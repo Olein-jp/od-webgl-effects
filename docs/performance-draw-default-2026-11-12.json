@@ -1,0 +1,600 @@
+[
+  {
+    "profile": "default Chromium (actual renderer recorded per context)",
+    "hardwareValidation": false,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+    "results": [
+      {
+        "count": 1,
+        "mode": "desktop",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 34,
+            "drawFps": 22.637991877315223,
+            "intervalMedian": 49.5,
+            "intervalP95": 51.5,
+            "drawCalls": 102,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 1,
+        "mode": "mobile",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 28,
+            "drawFps": 18.63932898356491,
+            "intervalMedian": 50.299999952316284,
+            "intervalP95": 66.29999995231628,
+            "drawCalls": 84,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 1,
+        "mode": "tall",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 33,
+            "drawFps": 21.989738121510925,
+            "intervalMedian": 49.700000047683716,
+            "intervalP95": 51.39999997615814,
+            "drawCalls": 99,
+            "cpuSubmissionMedian": 0,
+            "width": 264,
+            "height": 4096,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 3,
+        "mode": "desktop",
+        "contexts": 3,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 33,
+            "drawFps": 21.97216858506197,
+            "intervalMedian": 49.200000047683716,
+            "intervalP95": 51.39999997615814,
+            "drawCalls": 99,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 2,
+            "frames": 33,
+            "drawFps": 21.97216858506197,
+            "intervalMedian": 49.200000047683716,
+            "intervalP95": 51.59999990463257,
+            "drawCalls": 99,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 3,
+            "frames": 33,
+            "drawFps": 21.97216858506197,
+            "intervalMedian": 49.10000002384186,
+            "intervalP95": 51.60000002384186,
+            "drawCalls": 99,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 3,
+        "mode": "mobile",
+        "contexts": 3,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 27,
+            "drawFps": 17.98800799467022,
+            "intervalMedian": 50.199999928474426,
+            "intervalP95": 67.5,
+            "drawCalls": 81,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 2,
+            "frames": 27,
+            "drawFps": 17.98800799467022,
+            "intervalMedian": 50.10000002384186,
+            "intervalP95": 67.5,
+            "drawCalls": 81,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 3,
+            "frames": 27,
+            "drawFps": 17.98800799467022,
+            "intervalMedian": 50.200000047683716,
+            "intervalP95": 67.5,
+            "drawCalls": 81,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 3,
+        "mode": "tall",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 34,
+            "drawFps": 22.633470908614534,
+            "intervalMedian": 48.39999997615814,
+            "intervalP95": 51.40000009536743,
+            "drawCalls": 102,
+            "cpuSubmissionMedian": 0,
+            "width": 264,
+            "height": 4096,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 10,
+        "mode": "desktop",
+        "contexts": 4,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 34,
+            "drawFps": 22.627445760322455,
+            "intervalMedian": 48.89999997615814,
+            "intervalP95": 50.89999997615814,
+            "drawCalls": 102,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 2,
+            "frames": 34,
+            "drawFps": 22.627445760322455,
+            "intervalMedian": 48.89999997615814,
+            "intervalP95": 50.89999997615814,
+            "drawCalls": 102,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 3,
+            "frames": 34,
+            "drawFps": 22.627445760322455,
+            "intervalMedian": 48.90000009536743,
+            "intervalP95": 50.89999997615814,
+            "drawCalls": 102,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 4,
+            "frames": 34,
+            "drawFps": 22.627445760322455,
+            "intervalMedian": 48.89999997615814,
+            "intervalP95": 50.89999997615814,
+            "drawCalls": 102,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 10,
+        "mode": "mobile",
+        "contexts": 4,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 30,
+            "drawFps": 19.982681676515586,
+            "intervalMedian": 50,
+            "intervalP95": 66.09999990463257,
+            "drawCalls": 90,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 2,
+            "frames": 30,
+            "drawFps": 19.982681676515586,
+            "intervalMedian": 49.89999997615814,
+            "intervalP95": 66.10000002384186,
+            "drawCalls": 90,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 3,
+            "frames": 30,
+            "drawFps": 19.982681676515586,
+            "intervalMedian": 50,
+            "intervalP95": 66.10000002384186,
+            "drawCalls": 90,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 4,
+            "frames": 30,
+            "drawFps": 19.982681676515586,
+            "intervalMedian": 50,
+            "intervalP95": 66.10000002384186,
+            "drawCalls": 90,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 10,
+        "mode": "tall",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 33,
+            "drawFps": 21.96631831261894,
+            "intervalMedian": 50,
+            "intervalP95": 51.89999997615814,
+            "drawCalls": 99,
+            "cpuSubmissionMedian": 0,
+            "width": 264,
+            "height": 4096,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      }
+    ],
+    "effect": "particle-connections"
+  },
+  {
+    "profile": "default Chromium (actual renderer recorded per context)",
+    "hardwareValidation": false,
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/156.0.8078.4 Safari/537.36",
+    "results": [
+      {
+        "count": 1,
+        "mode": "desktop",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 34,
+            "drawFps": 22.654584222468188,
+            "intervalMedian": 48.700000047683716,
+            "intervalP95": 51.299999952316284,
+            "drawCalls": 34,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 1,
+        "mode": "mobile",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 27,
+            "drawFps": 17.970049916805323,
+            "intervalMedian": 50.39999997615814,
+            "intervalP95": 67.20000004768372,
+            "drawCalls": 27,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 1,
+        "mode": "tall",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 33,
+            "drawFps": 21.86588921386428,
+            "intervalMedian": 50,
+            "intervalP95": 51.799999952316284,
+            "drawCalls": 33,
+            "cpuSubmissionMedian": 0,
+            "width": 264,
+            "height": 4096,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 3,
+        "mode": "desktop",
+        "contexts": 3,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 34,
+            "drawFps": 22.651565622918053,
+            "intervalMedian": 49.09999990463257,
+            "intervalP95": 51.700000047683716,
+            "drawCalls": 34,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 2,
+            "frames": 34,
+            "drawFps": 22.651565622918053,
+            "intervalMedian": 49.10000002384186,
+            "intervalP95": 51.700000047683716,
+            "drawCalls": 34,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 3,
+            "frames": 34,
+            "drawFps": 22.651565622918053,
+            "intervalMedian": 49.10000002384186,
+            "intervalP95": 51.700000047683716,
+            "drawCalls": 34,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 3,
+        "mode": "mobile",
+        "contexts": 3,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 28,
+            "drawFps": 18.644293513561365,
+            "intervalMedian": 50.699999928474426,
+            "intervalP95": 67,
+            "drawCalls": 28,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 2,
+            "frames": 28,
+            "drawFps": 18.644293513561365,
+            "intervalMedian": 50.699999928474426,
+            "intervalP95": 66.89999997615814,
+            "drawCalls": 28,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 3,
+            "frames": 28,
+            "drawFps": 18.644293513561365,
+            "intervalMedian": 50.699999928474426,
+            "intervalP95": 67,
+            "drawCalls": 28,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 3,
+        "mode": "tall",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 32,
+            "drawFps": 21.29925452642959,
+            "intervalMedian": 49.60000002384186,
+            "intervalP95": 51.699999928474426,
+            "drawCalls": 32,
+            "cpuSubmissionMedian": 0,
+            "width": 264,
+            "height": 4096,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 10,
+        "mode": "desktop",
+        "contexts": 4,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 34,
+            "drawFps": 22.63196432029637,
+            "intervalMedian": 48.89999997615814,
+            "intervalP95": 51.299999952316284,
+            "drawCalls": 34,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 2,
+            "frames": 34,
+            "drawFps": 22.63196432029637,
+            "intervalMedian": 48.89999997615814,
+            "intervalP95": 51.299999952316284,
+            "drawCalls": 34,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 3,
+            "frames": 34,
+            "drawFps": 22.63196432029637,
+            "intervalMedian": 48.89999997615814,
+            "intervalP95": 51.299999952316284,
+            "drawCalls": 34,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 4,
+            "frames": 34,
+            "drawFps": 22.63196432029637,
+            "intervalMedian": 48.89999997615814,
+            "intervalP95": 51.299999952316284,
+            "drawCalls": 34,
+            "cpuSubmissionMedian": 0,
+            "width": 645,
+            "height": 120,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 10,
+        "mode": "mobile",
+        "contexts": 4,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 28,
+            "drawFps": 18.641810918774965,
+            "intervalMedian": 50.40000009536743,
+            "intervalP95": 66.70000004768372,
+            "drawCalls": 28,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 2,
+            "frames": 28,
+            "drawFps": 18.641810918774965,
+            "intervalMedian": 50.39999997615814,
+            "intervalP95": 66.70000004768372,
+            "drawCalls": 28,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 3,
+            "frames": 28,
+            "drawFps": 18.641810918774965,
+            "intervalMedian": 50.39999997615814,
+            "intervalP95": 66.70000004768372,
+            "drawCalls": 28,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          },
+          {
+            "id": 4,
+            "frames": 28,
+            "drawFps": 18.641810918774965,
+            "intervalMedian": 50.39999997615814,
+            "intervalP95": 66.70000004768372,
+            "drawCalls": 28,
+            "cpuSubmissionMedian": 0,
+            "width": 247,
+            "height": 86,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      },
+      {
+        "count": 10,
+        "mode": "tall",
+        "contexts": 1,
+        "samples": [
+          {
+            "id": 1,
+            "frames": 32,
+            "drawFps": 21.319120586275815,
+            "intervalMedian": 49.799999952316284,
+            "intervalP95": 51.5,
+            "drawCalls": 32,
+            "cpuSubmissionMedian": 0,
+            "width": 264,
+            "height": 4096,
+            "renderer": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (LLVM 10.0.0) (0x0000C0DE)), SwiftShader driver)"
+          }
+        ]
+      }
+    ],
+    "effect": "aurora"
+  }
+]

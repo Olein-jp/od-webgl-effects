@@ -86,7 +86,7 @@ jobs:
           PY
       - run: npm run env:start
       - run: npm run env:cli -- eval-file wp-content/plugins/od-webgl-effects/tests/php/integration.php
-      - run: npm run test:e2e -- --project=chromium backgrounds.spec.js blocks.spec.js effects.spec.js loading.spec.js presets.spec.js pointer.spec.js fallback.spec.js performance.spec.js
+      - run: npm run test:e2e -- --project=chromium backgrounds.spec.js blocks.spec.js effects.spec.js loading.spec.js presets.spec.js pointer.spec.js fallback.spec.js quality.spec.js performance.spec.js
       - if: always()
         uses: actions/upload-artifact@v4
         with:

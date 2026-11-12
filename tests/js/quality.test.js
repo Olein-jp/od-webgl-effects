@@ -13,3 +13,8 @@ test('resolution respects DPR, area and longest side limits',()=>{
 test('mobile override is authoritative, including mobile auto',()=>{
  const c={performance:{quality:'high',mobileQuality:'low'}};expect(requestedQuality(c,390)).toBe('low');expect(requestedQuality(c,1440)).toBe('high');
 });
+test('long gaps break fast and slow streaks',()=>{
+ const q=new AutoQuality();let now=0;for(let i=0;i<25;i++)q.observe(now+=40,25);
+ q.observe(now+=1000);expect(q.slow).toBe(0);for(let i=0;i<10;i++)q.observe(now+=40,25);expect(q.level).toBe(1);
+ q.reset();for(let i=0;i<200;i++)q.observe(now+=16,1);q.observe(now+=1000);expect(q.fast).toBe(0);for(let i=0;i<120;i++)q.observe(now+=16,1);expect(q.level).toBe(1);
+});

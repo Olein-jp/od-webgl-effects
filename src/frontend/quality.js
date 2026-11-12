@@ -44,7 +44,12 @@ export class AutoQuality {
 	observe( now, cost = 0 ) {
 		const delta = this.previous === null ? null : now - this.previous;
 		this.previous = now;
-		if ( delta === null || delta > 250 || delta <= 0 ) return false;
+		if ( delta === null || delta <= 0 ) return false;
+		if ( delta > 250 ) {
+			this.slow = 0;
+			this.fast = 0;
+			return false;
+		}
 		const slow = delta > 25 || cost > 20;
 		this.slow = slow ? this.slow + 1 : 0;
 		this.fast = ! slow && delta < 19 && cost < 8 ? this.fast + 1 : 0;

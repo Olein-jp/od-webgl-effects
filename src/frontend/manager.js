@@ -107,7 +107,7 @@ export class Manager {
 		if ( ! e.renderer || e.lost ) return;
 		e.renderer.resume();
 		e.renderer.update( this.fixedTime ?? e.time );
-		e.renderer.pause();
+		if ( ! e.active ) e.renderer.pause();
 	}
 	release( e ) {
 		e.root.classList.remove( 'has-od-webgl-canvas' );

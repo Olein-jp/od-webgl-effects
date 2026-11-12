@@ -68,3 +68,11 @@ test('pointer listeners exist only for eligible live interactive entries',async(
  manager.update(root,{enabled:true,effect:'aurora',settings:{interactive:true}},false);expect(destroy).toHaveBeenCalled();expect(manager.entries.get(root).pointer).toBeNull();
  manager.update(root,{enabled:true,effect:'aurora',settings:{interactive:false}},true);expect(manager.entries.get(root).pointer).toBeNull();
 });
+
+test('live rendering remains resumed after resize and automatic quality changes',async()=>{
+ const root=mount();root.getBoundingClientRect=()=>({width:640,height:300});intersection([{target:root,isIntersecting:true}]);await flush();
+ const entry=manager.entries.get(root),renderer=mockRenderers[0];renderer.pause.mockClear();
+ manager.resize(entry);expect(renderer.pause).not.toHaveBeenCalled();
+ for(let now=1000;now<=2400;now+=40)manager.tick(now);
+ expect(entry.auto.level).toBe(0);expect(renderer.pause).not.toHaveBeenCalled();
+});
