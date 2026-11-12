@@ -43,6 +43,53 @@ export function sanitizeSettings( effect, input = {} ) {
 	return out;
 }
 // Validation is separate from activation so PHP and JS also agree on disabled data.
+export function sanitizeUserPresets( input, effects ) {
+	const seen = new Set();
+	return ( Array.isArray( input ) ? input.slice( 0, 10 ) : [] ).flatMap(
+		( p ) => {
+			if (
+				! p ||
+				typeof p !== 'object' ||
+				typeof p.id !== 'string' ||
+				! /^user-[a-z0-9-]{1,35}$/.test( p.id ) ||
+				seen.has( p.id ) ||
+				typeof p.name !== 'string' ||
+				typeof p.effect !== 'string'
+			)
+				return [];
+			const effect = effects.get( p.effect );
+			const name = Array.from(
+				p.name.replace( /[\u0000-\u001f\u007f]/g, '' ).trim()
+			)
+				.slice( 0, 80 )
+				.join( '' );
+			if ( ! effect || ! name ) return [];
+			seen.add( p.id );
+			return [
+				{
+					id: p.id,
+					name,
+					effect: p.effect,
+					settings: sanitizeSettings( effect, p.settings ),
+				},
+			];
+		}
+	);
+}
+export function saveUserPreset( state, name, id, effects ) {
+	const presets = sanitizeUserPresets(
+		[
+			...( state.userPresets || [] ),
+			{ id, name, effect: state.effect, settings: state.settings },
+		],
+		effects
+	);
+	return {
+		...state,
+		userPresets: presets,
+		preset: presets.some( ( p ) => p.id === id ) ? id : state.preset,
+	};
+}
 export function sanitizeConfig( raw, effects ) {
 	if (
 		! raw ||
@@ -57,6 +104,9 @@ export function sanitizeConfig( raw, effects ) {
 	const p = raw.performance || {};
 	const qualities = [ 'auto', 'low', 'medium', 'high' ];
 	return {
+		...( Object.prototype.hasOwnProperty.call( raw, 'userPresets' )
+			? { userPresets: sanitizeUserPresets( raw.userPresets, effects ) }
+			: {} ),
 		version: 1,
 		enabled: raw.enabled === true,
 		effect: id,

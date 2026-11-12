@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-12T06:07:49+00:00\n"
+"POT-Creation-Date: 2026-11-12T06:12:57+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: od-webgl-effects\n"
@@ -105,129 +105,153 @@ msgstr ""
 msgid "Line thickness"
 msgstr ""
 
-#: src/editor/index.js:112
-msgid "Auto"
-msgstr ""
-
-#: src/editor/index.js:113
-msgid "Low"
-msgstr ""
-
-#: src/editor/index.js:114
-msgid "Medium"
-msgstr ""
-
-#: src/editor/index.js:115
-msgid "High"
-msgstr ""
-
-#: src/editor/index.js:126
-msgid "WebGL background"
-msgstr ""
-
-#: src/editor/index.js:131
-msgid "Enable WebGL background"
-msgstr ""
-
-#: src/editor/index.js:140
-msgid "Unsupported settings. Reset to edit safely."
-msgstr ""
-
-#: src/editor/index.js:150
-msgid "Reset"
-msgstr ""
-
-#: src/editor/index.js:157
-msgid "Category"
-msgstr ""
-
-#: src/editor/index.js:161
-msgid "Particles"
-msgstr ""
-
-#: src/editor/index.js:168
+#: src/editor/index.js:93
 msgid "Fluid & Gradient"
 msgstr ""
 
-#: src/editor/index.js:175
+#: src/editor/index.js:94
 msgid "Waves & Geometry"
 msgstr ""
 
-#: src/editor/index.js:193
+#: src/editor/index.js:95
+msgid "Particles"
+msgstr ""
+
+#: src/editor/index.js:127
+msgid "Auto"
+msgstr ""
+
+#: src/editor/index.js:128
+msgid "Low"
+msgstr ""
+
+#: src/editor/index.js:129
+msgid "Medium"
+msgstr ""
+
+#: src/editor/index.js:130
+msgid "High"
+msgstr ""
+
+#: src/editor/index.js:141
+msgid "WebGL background"
+msgstr ""
+
+#: src/editor/index.js:146
+msgid "Enable WebGL background"
+msgstr ""
+
+#: src/editor/index.js:155
+msgid "Unsupported settings. Reset to edit safely."
+msgstr ""
+
+#: src/editor/index.js:165
+msgid "Reset"
+msgstr ""
+
+#: src/editor/index.js:172
+msgid "Category"
+msgstr ""
+
+#: src/editor/index.js:195
 msgid "Effect"
 msgstr ""
 
-#: src/editor/index.js:212
+#: src/editor/index.js:211
+msgid "Effect thumbnails"
+msgstr ""
+
+#: src/editor/index.js:247
 msgid "Preset"
 msgstr ""
 
-#: src/editor/index.js:216
+#: src/editor/index.js:251
 msgid "Custom"
 msgstr ""
 
+#: src/editor/index.js:280
+msgid "Preset name"
+msgstr ""
+
+#: src/editor/index.js:286
+msgid "Saved in this block. Up to 10 presets."
+msgstr ""
+
+#: src/editor/index.js:309
+msgid "Save block preset"
+msgstr ""
+
+#: src/editor/index.js:330
+msgid "Delete block preset"
+msgstr ""
+
+#: src/editor/index.js:350
+msgid "Reset effect settings"
+msgstr ""
+
 #. translators: %d: color position in the effect palette.
-#: src/editor/index.js:246
+#: src/editor/index.js:360
 #, js-format
 msgid "Color %d"
 msgstr ""
 
-#: src/editor/index.js:286
+#: src/editor/index.js:400
 msgid "Add color"
 msgstr ""
 
-#: src/editor/index.js:300
+#: src/editor/index.js:414
 msgid "Remove color"
 msgstr ""
 
-#: src/editor/index.js:315
+#: src/editor/index.js:429
 msgid "Effect details"
 msgstr ""
 
-#: src/editor/index.js:334
+#: src/editor/index.js:448
 msgid "Editor preview"
 msgstr ""
 
-#: src/editor/index.js:341
+#: src/editor/index.js:455
 msgid "Static"
 msgstr ""
 
-#: src/editor/index.js:348
+#: src/editor/index.js:462
 msgid "Live while selected"
 msgstr ""
 
-#: src/editor/index.js:355
+#: src/editor/index.js:469
 msgid "Stopped"
 msgstr ""
 
-#: src/editor/index.js:365
+#: src/editor/index.js:479
 msgid "Performance"
 msgstr ""
 
-#: src/editor/index.js:372
+#: src/editor/index.js:486
 msgid "Quality"
 msgstr ""
 
-#: src/editor/index.js:383
+#: src/editor/index.js:497
 msgid "Mobile quality"
 msgstr ""
 
-#: src/editor/index.js:394
+#: src/editor/index.js:508
 msgid "Maximum FPS"
 msgstr ""
 
-#: src/editor/index.js:406
+#: src/editor/index.js:520
 msgid "Static on published page"
 msgstr ""
 
-#: src/editor/index.js:418
+#: src/editor/index.js:532
 msgid "Fallback background"
 msgstr ""
 
-#: src/editor/index.js:439
+#: src/editor/index.js:553
 msgid "Check text contrast. Reduced motion uses the fallback color."
 msgstr ""
 
-#: src/editor/index.js:446
+#: src/editor/index.js:560
 msgid "Cover media is hidden while WebGL is enabled. Its settings are preserved."
 msgstr ""
 

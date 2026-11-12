@@ -10,3 +10,5 @@
 /* Decorative children must not inherit core flow gaps or constrained widths. */
 .od-webgl-background{margin:0!important;max-width:none!important;width:auto!important}
 .has-od-webgl.is-position-sticky{position:sticky}
+
+.od-webgl-picker{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin:12px 0}.od-webgl-picker .components-button{height:auto;display:flex;flex-direction:column;gap:6px;padding:8px;white-space:normal}.od-webgl-picker img{width:100%;height:48px;object-fit:cover}.od-webgl-picker [aria-pressed="true"]{outline:2px solid var(--wp-admin-theme-color,#007cba)}

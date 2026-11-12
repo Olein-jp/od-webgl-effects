@@ -439,6 +439,124 @@
       "name": "invalid configuration 14",
       "raw": null,
       "expected": null
+    },
+    {
+      "name": "block presets validate and preserve theme references",
+      "raw": {
+        "enabled": true,
+        "userPresets": [
+          {
+            "id": "user-test",
+            "name": "　テーマ😀　",
+            "effect": "aurora",
+            "settings": {
+              "colors": [
+                "var(--wp--preset--color--accent)",
+                "#abc"
+              ],
+              "shader": "invalid"
+            }
+          },
+          {
+            "id": "user-test",
+            "name": "duplicate",
+            "effect": "waves"
+          },
+          {
+            "id": "warm",
+            "name": "bad",
+            "effect": "aurora"
+          },
+          {
+            "id": "user-unknown",
+            "name": "bad",
+            "effect": "unknown"
+          }
+        ]
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        },
+        "userPresets": [
+          {
+            "id": "user-test",
+            "name": "テーマ😀",
+            "effect": "aurora",
+            "settings": {
+              "speed": 0.4,
+              "intensity": 0.7,
+              "opacity": 1,
+              "scale": 2,
+              "glow": 0.6,
+              "direction": 0,
+              "colors": [
+                "var(--wp--preset--color--accent)",
+                "#abc"
+              ]
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "malformed preset list becomes empty",
+      "raw": {
+        "enabled": true,
+        "userPresets": {}
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        },
+        "userPresets": []
+      }
     }
   ],
   "definition": {

@@ -1,3 +1,4 @@
+import { dispatch } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { useEffect, useRef, useState, Fragment } from '@wordpress/element';
@@ -10,14 +11,17 @@ import {
 	Notice,
 	ColorPalette,
 	RangeControl,
+	TextControl,
 } from '@wordpress/components';
 import { __, sprintf } from '@wordpress/i18n';
+import { labels } from '../effects/labels';
 import { effects } from '../effects';
 import {
 	normalize,
 	commonControls,
 	switchEffect,
 	applyPreset,
+	saveUserPreset,
 } from '../effects/settings';
 import { getManager } from '../frontend/manager';
 import { Control } from './controls';
@@ -74,6 +78,7 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 	const valid = normalize( raw || fallback, effects );
 	const state = valid || normalize( fallback, effects );
 	const [ mode, setMode ] = useState( 'static' );
+	const [ presetName, setPresetName ] = useState( '' );
 	const [ theme, defaults, custom ] = useSettings(
 		'color.palette.theme',
 		'color.palette.default',
@@ -85,10 +90,26 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 		...( defaults || [] ),
 	];
 	const effect = effects.get( state.effect );
+	const categories = {
+		fluid: __( 'Fluid & Gradient', 'od-webgl-effects' ),
+		geometry: __( 'Waves & Geometry', 'od-webgl-effects' ),
+		particles: __( 'Particles', 'od-webgl-effects' ),
+	};
+	const availablePresets = [
+		...effect.presets,
+		...( state.userPresets || [] ).filter(
+			( p ) => p.effect === state.effect
+		),
+	];
+	const commitSettings = ( value ) => {
+		// Discrete inspector actions must not merge as edits to the same object attribute.
+		dispatch(
+			'core/block-editor'
+		).__unstableMarkLastChangeAsPersistent?.();
+		setAttributes( { odWebgl: value } );
+	};
 	const patch = ( part ) =>
-		setAttributes( {
-			odWebgl: { ...( raw || state ), ...part, version: 1 },
-		} );
+		commitSettings( { ...( raw || state ), ...part, version: 1 } );
 	const setting = ( id, value ) =>
 		patch( { settings: { ...state.settings, [ id ]: value }, preset: '' } );
 	const performance = ( id, value ) =>
@@ -143,9 +164,7 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 							) }
 							<Button
 								variant="secondary"
-								onClick={ () =>
-									setAttributes( { odWebgl: fallback } )
-								}
+								onClick={ () => commitSettings( fallback ) }
 							>
 								{ __( 'Reset', 'od-webgl-effects' ) }
 							</Button>
@@ -157,28 +176,15 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 								label={ __( 'Category', 'od-webgl-effects' ) }
 								value={ effect.category }
 								options={ [
-									{
-										label: __(
-											'Particles',
-											'od-webgl-effects'
-										),
-										value: 'particles',
-									},
-									{
-										label: __(
-											'Fluid & Gradient',
-											'od-webgl-effects'
-										),
-										value: 'fluid',
-									},
-									{
-										label: __(
-											'Waves & Geometry',
-											'od-webgl-effects'
-										),
-										value: 'geometry',
-									},
-								] }
+									...new Set(
+										effects
+											.getAll()
+											.map( ( e ) => e.category )
+									),
+								].map( ( value ) => ( {
+									value,
+									label: categories[ value ] || value,
+								} ) ) }
 								onChange={ ( category ) =>
 									setEffect(
 										effects
@@ -203,6 +209,39 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 									} ) ) }
 								onChange={ setEffect }
 							/>
+							<div
+								className="od-webgl-picker"
+								role="group"
+								aria-label={ __(
+									'Effect thumbnails',
+									'od-webgl-effects'
+								) }
+							>
+								{ effects
+									.getAll()
+									.filter(
+										( e ) => e.category === effect.category
+									)
+									.map( ( e ) => (
+										<Button
+											key={ e.id }
+											variant="secondary"
+											aria-pressed={
+												e.id === state.effect
+											}
+											onClick={ () => setEffect( e.id ) }
+										>
+											<img
+												src={
+													config.assetsUrl +
+													e.thumbnail
+												}
+												alt=""
+											/>
+											<span>{ e.label }</span>
+										</Button>
+									) ) }
+							</div>
 							<img
 								className="od-webgl-thumbnail"
 								src={ config.assetsUrl + effect.thumbnail }
@@ -219,13 +258,16 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 										),
 										value: '',
 									},
-									...effect.presets.map( ( p ) => ( {
-										label: p.label,
+									...availablePresets.map( ( p ) => ( {
+										label:
+											p.name ||
+											labels[ p.label ] ||
+											p.label,
 										value: p.id,
 									} ) ),
 								] }
 								onChange={ ( id ) => {
-									const preset = effect.presets.find(
+									const preset = availablePresets.find(
 										( p ) => p.id === id
 									);
 									if ( preset )
@@ -238,6 +280,82 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 										);
 								} }
 							/>
+							<TextControl
+								label={ __(
+									'Preset name',
+									'od-webgl-effects'
+								) }
+								value={ presetName }
+								onChange={ setPresetName }
+								help={ __(
+									'Saved in this block. Up to 10 presets.',
+									'od-webgl-effects'
+								) }
+							/>
+							<Button
+								variant="secondary"
+								disabled={
+									! presetName.trim() ||
+									( state.userPresets || [] ).length >= 10
+								}
+								onClick={ () => {
+									commitSettings(
+										saveUserPreset(
+											state,
+											presetName,
+											'user-' + Date.now().toString( 36 ),
+											effects
+										)
+									);
+									setPresetName( '' );
+								} }
+							>
+								{ __(
+									'Save block preset',
+									'od-webgl-effects'
+								) }
+							</Button>
+							<Button
+								variant="tertiary"
+								disabled={
+									! ( state.userPresets || [] ).some(
+										( p ) => p.id === state.preset
+									)
+								}
+								onClick={ () =>
+									patch( {
+										userPresets: state.userPresets.filter(
+											( p ) => p.id !== state.preset
+										),
+										preset: '',
+									} )
+								}
+							>
+								{ __(
+									'Delete block preset',
+									'od-webgl-effects'
+								) }
+							</Button>
+							<Button
+								variant="tertiary"
+								onClick={ () =>
+									patch(
+										applyPreset(
+											state,
+											{
+												id: '',
+												settings: effect.defaults,
+											},
+											effects
+										)
+									)
+								}
+							>
+								{ __(
+									'Reset effect settings',
+									'od-webgl-effects'
+								) }
+							</Button>
 							{ state.settings.colors.map( ( value, index ) => (
 								<fieldset key={ index }>
 									<legend>

@@ -107,6 +107,36 @@ final class Settings {
 		return $settings;
 	}
 	/**
+	 * Validate block-local presets without writing site or user options.
+	 *
+	 * @param mixed $input Untrusted preset list.
+	 * @param array $defs Bundled definitions.
+	 * @return array
+	 */
+	public static function user_presets( $input, $defs ) {
+		$result = array();
+		$seen   = array();
+		foreach ( array_slice( is_array( $input ) && array_is_list( $input ) ? $input : array(), 0, 10 ) as $p ) {
+			if ( ! is_array( $p ) || ! is_string( $p['id'] ?? null ) || ! preg_match( '/^user-[a-z0-9-]{1,35}$/D', $p['id'] ) || isset( $seen[ $p['id'] ] ) || ! is_string( $p['name'] ?? null ) || ! is_string( $p['effect'] ?? null ) || ! isset( $defs[ $p['effect'] ] ) ) {
+				continue;
+			}
+			$name  = preg_replace( '/[\x00-\x1f\x7f]/u', '', $p['name'] );
+			$name  = is_string( $name ) ? preg_replace( '/^[\p{Z}\x{FEFF}]+|[\p{Z}\x{FEFF}]+$/u', '', $name ) : null;
+			$chars = is_string( $name ) ? preg_split( '//u', trim( $name ), -1, PREG_SPLIT_NO_EMPTY ) : false;
+			if ( ! $chars ) {
+				continue;
+			}
+			$seen[ $p['id'] ] = true;
+			$result[]         = array(
+				'id'       => $p['id'],
+				'name'     => implode( '', array_slice( $chars, 0, 80 ) ),
+				'effect'   => $p['effect'],
+				'settings' => self::sanitize_settings( $defs[ $p['effect'] ], $p['settings'] ?? null ),
+			);
+		}
+		return $result;
+	}
+	/**
 	 * Validate settings and discard unknown parameters.
 	 *
 	 * @param mixed $raw Untrusted attribute data.
@@ -124,7 +154,7 @@ final class Settings {
 		$settings = self::sanitize_settings( $defs[ $effect ], $raw['settings'] ?? null );
 		$p        = isset( $raw['performance'] ) && is_array( $raw['performance'] ) ? $raw['performance'] : array();
 		$f        = isset( $raw['fallback'] ) && is_array( $raw['fallback'] ) ? $raw['fallback'] : array();
-		return array(
+		$config   = array(
 			'version'     => 1,
 			'enabled'     => true === ( $raw['enabled'] ?? false ),
 			'effect'      => $effect,
@@ -138,5 +168,9 @@ final class Settings {
 			),
 			'fallback'    => array( 'color' => self::color( $f['color'] ?? null ) ),
 		);
+		if ( array_key_exists( 'userPresets', $raw ) ) {
+			$config['userPresets'] = self::user_presets( $raw['userPresets'], $defs );
+		}
+		return $config;
 	}
 }
