@@ -2,9 +2,10 @@
 <ruleset name="OD WebGL Effects">
 	<description>WordPress coding standards for plugin source.</description>
 	<file>od-webgl-effects.php</file>
+	<file>includes</file>
 	<arg name="extensions" value="php"/>
 	<arg value="sp"/>
-	<rule ref="WordPress"/>
+	<rule ref="WordPress"><exclude name="WordPress.Files.FileName"/></rule>
 	<rule ref="WordPress.WP.I18n"><properties><property name="text_domain" type="array"><element value="od-webgl-effects"/></property></properties></rule>
-	<rule ref="WordPress.NamingConventions.PrefixAllGlobals"><properties><property name="prefixes" type="array"><element value="od_webgl_effects"/></property></properties></rule>
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals"><properties><property name="prefixes" type="array"><element value="od_webgl_effects"/><element value="od_webgl"/><element value="Olein"/></property></properties></rule>
 </ruleset>

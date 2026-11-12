@@ -2,20 +2,208 @@ msgid ""
 msgstr ""
 "Project-Id-Version: OD WebGL Effects 0.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/Olein-jp/od-webgl-effects/issues\n"
-"PO-Revision-Date: 2026-11-12 12:00+0900\n"
 "Last-Translator: Olein Design\n"
 "Language-Team: Japanese\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Domain: od-webgl-effects\n"
+"POT-Creation-Date: 2026-11-12T04:06:00+00:00\n"
+"PO-Revision-Date: 2026-11-12 12:00+0900\n"
 "Language: ja\n"
+"X-Domain: od-webgl-effects\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: od-webgl-effects.php:5
+#. Description of the plugin
+#: od-webgl-effects.php
 msgid "WebGL background effects for WordPress blocks."
 msgstr "WordPress ブロック向けの WebGL 背景エフェクト。"
 
 #: od-webgl-effects.php:88
 msgid "OD WebGL Effects: dependencies are missing. Run composer install or install the ZIP asset from GitHub Releases."
 msgstr "OD WebGL Effects: 依存ライブラリがありません。composer install を実行するか、GitHub Releases に添付された ZIP をインストールしてください。"
+
+#. Plugin Name of the plugin
+#: od-webgl-effects.php
+msgid "OD WebGL Effects"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: od-webgl-effects.php
+msgid "https://github.com/Olein-jp/od-webgl-effects"
+msgstr ""
+
+#. Author of the plugin
+#: od-webgl-effects.php
+msgid "Olein Design"
+msgstr ""
+
+#. Author URI of the plugin
+#: od-webgl-effects.php
+msgid "https://olein-design.com/"
+msgstr ""
+
+#: src/editor/controls.js:10
+msgid "Speed"
+msgstr "速度"
+
+#: src/editor/controls.js:11
+msgid "Intensity"
+msgstr "強度"
+
+#: src/editor/controls.js:12
+msgid "Opacity"
+msgstr "不透明度"
+
+#: src/editor/controls.js:13
+msgid "Noise scale"
+msgstr "ノイズのスケール"
+
+#: src/editor/controls.js:14
+msgid "Glow"
+msgstr "グローの強度"
+
+#: src/editor/controls.js:15
+msgid "Direction"
+msgstr "方向"
+
+#: src/editor/controls.js:16
+msgid "Scale"
+msgstr "スケール"
+
+#: src/editor/controls.js:17
+msgid "Distortion"
+msgstr "歪み"
+
+#: src/editor/controls.js:18
+msgid "Mix"
+msgstr "混合の強度"
+
+#: src/editor/controls.js:19
+msgid "Amplitude"
+msgstr "振幅"
+
+#: src/editor/controls.js:20
+msgid "Frequency"
+msgstr "周波数"
+
+#: src/editor/controls.js:21
+msgid "Wave count"
+msgstr "波の数"
+
+#: src/editor/controls.js:22
+msgid "Line thickness"
+msgstr "線の太さ"
+
+#: src/editor/index.js:115
+msgid "Auto"
+msgstr "自動"
+
+#: src/editor/index.js:116
+msgid "Low"
+msgstr "低"
+
+#: src/editor/index.js:117
+msgid "Medium"
+msgstr "中"
+
+#: src/editor/index.js:118
+msgid "High"
+msgstr "高"
+
+#: src/editor/index.js:129
+msgid "WebGL background"
+msgstr "WebGL 背景"
+
+#: src/editor/index.js:134
+msgid "Enable WebGL background"
+msgstr "WebGL 背景を有効にする"
+
+#: src/editor/index.js:143
+msgid "Unsupported settings. Reset to edit safely."
+msgstr "対応していない設定です。リセットして再設定してください。"
+
+#: src/editor/index.js:153
+msgid "Reset"
+msgstr "リセット"
+
+#: src/editor/index.js:160
+msgid "Category"
+msgstr "カテゴリー"
+
+#: src/editor/index.js:183
+msgid "Effect"
+msgstr "エフェクト"
+
+#: src/editor/index.js:202
+msgid "Preset"
+msgstr "プリセット"
+
+#: src/editor/index.js:206
+msgid "Custom"
+msgstr "カスタム"
+
+#. translators: %d: color position in the effect palette.
+#: src/editor/index.js:236
+#, js-format
+msgid "Color %d"
+msgstr "色 %d"
+
+#: src/editor/index.js:276
+msgid "Add color"
+msgstr "色を追加"
+
+#: src/editor/index.js:290
+msgid "Remove color"
+msgstr "色を減らす"
+
+#: src/editor/index.js:305
+msgid "Effect details"
+msgstr "エフェクトの詳細"
+
+#: src/editor/index.js:324
+msgid "Editor preview"
+msgstr "編集画面のプレビュー"
+
+#: src/editor/index.js:331
+msgid "Static"
+msgstr "静止画"
+
+#: src/editor/index.js:338
+msgid "Live while selected"
+msgstr "選択中に動かす"
+
+#: src/editor/index.js:345
+msgid "Stopped"
+msgstr "停止"
+
+#: src/editor/index.js:355
+msgid "Performance"
+msgstr "パフォーマンス"
+
+#: src/editor/index.js:362
+msgid "Quality"
+msgstr "描画品質"
+
+#: src/editor/index.js:373
+msgid "Mobile quality"
+msgstr "モバイルの描画品質"
+
+#: src/editor/index.js:384
+msgid "Maximum FPS"
+msgstr "FPS 上限"
+
+#: src/editor/index.js:396
+msgid "Static on published page"
+msgstr "公開画面で静止表示する"
+
+#: src/editor/index.js:408
+msgid "Fallback background"
+msgstr "フォールバック背景色"
+
+#: src/editor/index.js:429
+msgid "Check text contrast. Reduced motion uses the fallback color."
+msgstr "文字の読みやすさを確認してください。動きを減らす設定ではフォールバック背景色を表示します。"
+
+#: src/editor/index.js:436
+msgid "Cover media is hidden while WebGL is enabled. Its settings are preserved."
+msgstr "WebGL が有効な間はカバーの画像・動画を非表示にします。メディアの設定は保持されます。"

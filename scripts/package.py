@@ -27,8 +27,11 @@ if "inc2734/wp-github-plugin-updater" not in names:
     sys.exit("Updater dependency is missing")
 if names.intersection({"wp-coding-standards/wpcs", "squizlabs/php_codesniffer", "dealerdirect/phpcodesniffer-composer-installer"}):
     sys.exit("Development dependencies found: run composer install --no-dev")
-files = [entry, ROOT / "LICENSE", ROOT / "readme.txt", ROOT / "README.md"]
-for directory in ("vendor", "languages", "includes", "build", "assets"):
+for required in ("build/editor.js", "build/editor.asset.php", "build/frontend.js", "build/frontend.asset.php", "assets/background.css", "schemas/effects.json"):
+    if not (ROOT / required).is_file():
+        sys.exit(f"Missing build asset: {required}. Run npm run build")
+files = [entry, ROOT / "LICENSE", ROOT / "readme.txt", ROOT / "README.md", ROOT / "THIRD_PARTY_LICENSES.txt"]
+for directory in ("vendor", "languages", "includes", "build", "assets", "schemas"):
     base = ROOT / directory
     if base.exists():
         files.extend(p for p in base.rglob("*") if p.is_file() and not any(part.startswith(".") for part in p.relative_to(base).parts))

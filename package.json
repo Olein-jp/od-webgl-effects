@@ -12,11 +12,24 @@
     "env:status": "wp-env status",
     "env:logs": "wp-env logs",
     "env:cli": "wp-env run cli wp",
-    "i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/od-webgl-effects wp i18n make-pot . languages/od-webgl-effects.pot --domain=od-webgl-effects --exclude=vendor,node_modules,dist",
+    "i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/od-webgl-effects wp i18n make-pot . languages/od-webgl-effects.pot --domain=od-webgl-effects --exclude=vendor,node_modules,dist,build,tests,docs",
     "i18n:mo": "wp-env run cli --env-cwd=wp-content/plugins/od-webgl-effects wp i18n make-mo languages",
-    "package": "python3 scripts/package.py"
+    "package": "python3 scripts/package.py",
+    "build": "wp-scripts build",
+    "start": "wp-scripts start",
+    "test:unit": "wp-scripts test-unit-js --runInBand",
+    "test:php": "php tests/php/run.php",
+    "test:e2e": "playwright test",
+    "format:js": "wp-scripts format src webpack.config.js",
+    "i18n:json": "wp-env run cli --env-cwd=wp-content/plugins/od-webgl-effects wp i18n make-json languages --no-purge --use-map=i18n-map.json",
+    "test:integration": "php tests/php/integration.php"
   },
   "devDependencies": {
-    "@wordpress/env": "10.36.0"
+    "@playwright/test": "1.64.1",
+    "@wordpress/env": "10.36.0",
+    "@wordpress/scripts": "34.2.0"
+  },
+  "dependencies": {
+    "ogl": "1.0.11"
   }
 }

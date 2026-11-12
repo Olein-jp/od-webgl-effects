@@ -1,0 +1,1 @@
+module.exports = { preset: '@wordpress/jest-preset-default', transform: { '\\.[jt]sx?$': require.resolve('@wordpress/scripts/config/babel-transform') }, testMatch: ['**/tests/js/**/*.test.js'], collectCoverageFrom: ['src/effects/settings.js', 'src/effects/registry.js', 'src/frontend/manager.js'] };

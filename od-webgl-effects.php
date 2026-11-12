@@ -4,8 +4,8 @@
  * Plugin URI: https://github.com/Olein-jp/od-webgl-effects
  * Description: WebGL background effects for WordPress blocks.
  * Version: 0.1.0
- * Requires at least: 6.8
- * Requires PHP: 7.4
+ * Requires at least: 6.9
+ * Requires PHP: 8.1
  * Author: Olein Design
  * Author URI: https://olein-design.com/
  * License: GPL-2.0-or-later
@@ -88,3 +88,10 @@ function od_webgl_effects_missing_dependencies_notice() {
 		esc_html__( 'OD WebGL Effects: dependencies are missing. Run composer install or install the ZIP asset from GitHub Releases.', 'od-webgl-effects' )
 	);
 }
+
+// Load feature hooks before WordPress registers core blocks on init.
+define( 'OD_WEBGL_EFFECTS_FILE', __FILE__ );
+foreach ( array( 'Settings', 'BlockSupport', 'Adapters/BlockAdapterInterface', 'Adapters/RootAdapter', 'Assets', 'BlockRenderer', 'Plugin' ) as $od_webgl_effects_class ) {
+	require_once __DIR__ . '/includes/' . $od_webgl_effects_class . '.php';
+}
+\Olein\WebGLEffects\Plugin::boot();

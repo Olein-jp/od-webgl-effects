@@ -1,17 +1,32 @@
 # OD WebGL Effects
 
-WordPress ブロックの WebGL 背景エフェクトを開発するための最小構成です。
-現時点ではプラグインの起動・翻訳・GitHub 更新を実装しています。背景エフェクトやエディター UI は今後実装します。
+既存の WordPress ブロックに、Aurora・Fluid Gradient・Waves の動く背景を設定するプラグインです。Phase 1 の実装を収録しています。
+
+## 使い方
+
+1. 配布 ZIP をインストールして有効化します。
+2. グループ・カバー・カラム・カラムズのいずれかを選択します。
+3. サイドバーの「スタイル」→「WebGL 背景」を開き、有効にします。
+4. エフェクト・プリセット・色・速度・強度を選びます。詳細設定では波形や歪みなどを調整できます。
+5. 「編集画面のプレビュー」を「選択中に動かす」にすると、選択中のブロックが動きます。初期表示は静止画です。
+6. フォールバック背景色と文字の読みやすさを確認し、保存します。
+
+テーマの色はプリセット参照で保存します。カバーの画像・動画は WebGL が有効な間だけ非表示になり、設定は残ります。無効化すると通常表示に戻ります。独自のコンテンツブロックは追加しません。
+
+公開画面では画面外・非表示タブで描画を停止します。動きを減らす設定や WebGL 非対応環境では背景色にフォールバックします。同時 WebGL コンテキストは1文書につき最大4個です。上限を超えたブロックはフォールバックを表示します。
+
+日本語 UI・翻訳 JSON・OGL を同梱し、外部 CDN は利用しません。プラグインを停止してもテキストや画像などのコンテンツは残ります。
 
 ## 要件とセットアップ
 
-- WordPress 6.8 以上、PHP 7.4 以上（開発環境は互換性確認用に PHP 7.4）
+- WordPress 6.9 以上、PHP 8.1 以上
 - Node.js 22 以上、npm 10 以上、Composer 2、Python 3
 - Docker Desktop（wp-env 起動時）
 
 ```sh
 npm ci
 composer install
+npm run build
 npm run env:start
 ```
 
@@ -20,7 +35,7 @@ wp-env の標準ログイン: `admin` / `password`（ローカル開発専用）
 `npm run env:stop` で停止、`npm run env:cli -- plugin list` で WP-CLI を実行できます。
 ポートなどの個人設定は Git 管理外の `.wp-env.override.json` に記載してください。
 
-JavaScript の実装を始める段階でビルド環境を追加します。
+JavaScript は `@wordpress/scripts` でビルドします。`npm start` で変更を監視できます。
 wp-env 10.36.0 は現在のローカル Node.js と互換性があり、Docker 開発に必要な依存のみの版として固定しています。
 
 ## コードチェック
@@ -31,9 +46,9 @@ composer lint
 php -l od-webgl-effects.php
 ```
 
-WPCS は `phpcs.xml.dist` で管理します。PHP ファイルを追加するときは検査対象の `file` も追加してください。
+WPCS は `phpcs.xml.dist` で管理します。`includes/` とプラグインのエントリーファイルを検査します。
 `composer format` で自動整形できます。
-CI は上記チェックと翻訳生成、配布 ZIP 作成を実施します。
+CI は上記チェック、JS/PHP 単体テスト、WordPress 6.9 / 最新版の統合・Chromium テスト、翻訳生成、配布 ZIP 作成を実施します。
 
 ## 多言語化
 
@@ -48,7 +63,7 @@ npm run i18n:mo
 ```
 
 ファイル名は `od-webgl-effects-ja.po` / `.mo`、他言語も同じ規則です。
-JavaScript の実装時は `@wordpress/i18n` と `wp_set_script_translations()`、翻訳 JSON 生成を追加してください。
+JavaScript は `@wordpress/i18n` と `wp_set_script_translations()` に対応しています。`npm run i18n:json` でバンドル用の翻訳 JSON を生成します。
 
 ## 配布と管理画面からの更新
 
@@ -78,6 +93,7 @@ git push origin 0.1.0
 
 ```sh
 composer install --no-dev --optimize-autoloader
+npm run build
 npm run package
 # dist/od-webgl-effects.zip
 composer install
@@ -92,3 +108,13 @@ composer install
 - [WordPress Coding Standards](https://github.com/WordPress/WordPress-Coding-Standards)
 - [WordPress 国際化](https://developer.wordpress.org/plugins/internationalization/how-to-internationalize-your-plugin/)
 - [WP-CLI make-pot](https://developer.wordpress.org/cli/commands/i18n/make-pot/)
+
+## 開発資料と検証結果
+
+- [アーキテクチャ・描画制御](docs/architecture.md)
+- [フック・独自ブロックへの対応](docs/hooks.md)
+- [内部エフェクト API](docs/effect-api.md)
+- [開発・テスト・翻訳・配布](docs/development.md)
+- [検証済み項目と制限](docs/validation.md)
+
+外部スクリプト向け API の互換性保証、エフェクト単位の分割読み込み、背景画像との合成、静止画像フォールバック、追加エフェクトは後続フェーズです。

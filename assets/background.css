@@ -1,0 +1,12 @@
+.has-od-webgl{position:relative;isolation:isolate}
+.has-od-webgl::before,.od-webgl-background{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none!important;border-radius:inherit;overflow:hidden}
+.has-od-webgl::before{background:var(--od-webgl-fallback,transparent)}
+.od-webgl-background canvas{display:block;width:100%;height:100%;pointer-events:none!important}
+.has-od-webgl.wp-block-cover>.wp-block-cover__image-background,.has-od-webgl.wp-block-cover>.wp-block-cover__video-background,.has-od-webgl.wp-block-cover>.wp-block-cover__background{visibility:hidden}
+.has-od-webgl.wp-block-cover>.wp-block-cover__inner-container{z-index:1}
+.od-webgl-controls .components-base-control{margin-bottom:16px}
+.od-webgl-controls .od-webgl-thumbnail{width:100%;height:54px;object-fit:cover;border-radius:4px}
+.od-webgl-controls .od-webgl-colors{display:flex;gap:8px;margin:8px 0}
+/* Decorative children must not inherit core flow gaps or constrained widths. */
+.od-webgl-background{margin:0!important;max-width:none!important;width:auto!important}
+.has-od-webgl.is-position-sticky{position:sticky}

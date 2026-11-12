@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: shivammathur/setup-php@v2
         with:
-          php-version: '7.4'
+          php-version: '8.1'
           tools: composer:v2, wp-cli
           coverage: none
       - uses: actions/setup-node@v4
@@ -24,14 +24,18 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --ignore-scripts
+      - run: npm run build
+      - run: npm run test:unit
+      - run: npm run test:php
       - run: composer validate --strict
       - run: composer install --prefer-dist --no-interaction
       - run: composer lint
       - run: php -l od-webgl-effects.php
       - name: Build translations
         run: |
-          wp i18n make-pot . languages/od-webgl-effects.pot --domain=od-webgl-effects --exclude=vendor,node_modules,dist
+          wp i18n make-pot . languages/od-webgl-effects.pot --domain=od-webgl-effects --exclude=vendor,node_modules,dist,build,tests,docs
           wp i18n make-mo languages
+          wp i18n make-json languages --no-purge --use-map=i18n-map.json
       - run: composer install --no-dev --prefer-dist --no-interaction --optimize-autoloader
       - name: Build and verify distribution
         env:
@@ -49,9 +53,52 @@ jobs:
           path: dist/od-webgl-effects.zip
           if-no-files-found: error
 
+  integration:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        wordpress: ['6.9', 'latest']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'
+          tools: composer:v2
+          coverage: none
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: composer install --no-dev --prefer-dist --no-interaction
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - name: Configure disposable WordPress
+        env:
+          TEST_WP_VERSION: ${{ matrix.wordpress }}
+        run: |
+          python3 - <<'PY'
+          import json, os
+          version = os.environ['TEST_WP_VERSION']
+          core = 'https://wordpress.org/latest.zip' if version == 'latest' else f'https://wordpress.org/wordpress-{version}.zip'
+          with open('.wp-env.override.json', 'w') as target:
+              json.dump({'core': core}, target)
+          PY
+      - run: npm run env:start
+      - run: npm run env:cli -- eval-file wp-content/plugins/od-webgl-effects/tests/php/integration.php
+      - run: npm run test:e2e -- --project=chromium backgrounds
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-results-${{ matrix.wordpress }}
+          path: tests/artifacts/results
+          if-no-files-found: ignore
+      - if: always()
+        run: npm run env:stop
+
   release:
     if: github.event_name == 'push' && github.ref_type == 'tag'
-    needs: build
+    needs: [build, integration]
     runs-on: ubuntu-latest
     permissions:
       contents: write

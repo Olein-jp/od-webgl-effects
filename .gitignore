@@ -4,3 +4,7 @@
 /.wp-env.override.json
 /.wp-env/
 /.DS_Store
+
+/tests/artifacts/
+/playwright-report/
+/coverage/
