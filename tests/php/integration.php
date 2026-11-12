@@ -53,6 +53,9 @@ foreach ( Settings::definitions() as $id => $definition ) {
 	$data = json_decode( $tags->get_attribute( 'data-od-webgl' ), true );
 	od_webgl_test_check( $id === $data['effect'] && 1.25 === $data['settings']['speed'] && 'var(--wp--preset--color--contrast)' === $data['settings']['colors'][0], "$id server allowlist matches schema and retains settings" );
 }
+$unknown = array( 'blockName' => 'core/group', 'attrs' => array( 'odWebgl' => array( 'enabled' => true, 'version' => 999, 'fallback' => array( 'color' => 'transparent', 'imageId' => 2147483647 ) ) ) );
+$unknown_output = Olein\WebGLEffects\BlockRenderer::render( '<div class="wp-block-group" style="background-color:#fff"><p>Original</p></div>', $unknown );
+od_webgl_test_check( false !== strpos( $unknown_output, 'has-od-webgl-standard-fallback' ) && false === strpos( $unknown_output, 'data-od-webgl=' ) && false !== strpos( $unknown_output, 'background-color:#fff' ), 'unknown versions and deleted images retain standard background and content' );
 echo 'WordPress ' . get_bloginfo( 'version' ) . " integration complete\n";
 
 remove_filter( 'render_block', array( Olein\WebGLEffects\BlockRenderer::class, 'render' ), 10 );

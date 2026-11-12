@@ -107,6 +107,23 @@ final class Settings {
 		return $settings;
 	}
 	/**
+	 * Validate fallback settings; URLs are never accepted from block data.
+	 *
+	 * @param mixed $input Untrusted fallback data.
+	 * @return array
+	 */
+	public static function fallback( $input ) {
+		$input = is_array( $input ) ? $input : array();
+		$color = $input['color'] ?? null;
+		$out   = array( 'color' => '' === $color || 'transparent' === $color ? 'transparent' : self::color( $color ) );
+		if ( ( is_int( $input['imageId'] ?? null ) || is_float( $input['imageId'] ?? null ) ) && floor( $input['imageId'] ) === (float) $input['imageId'] && $input['imageId'] > 0 && $input['imageId'] <= 2147483647 ) {
+			$out['imageId']  = (int) $input['imageId'];
+			$out['fit']      = in_array( $input['fit'] ?? '', array( 'cover', 'contain' ), true ) ? $input['fit'] : 'cover';
+			$out['position'] = in_array( $input['position'] ?? '', array( 'center', 'top', 'bottom', 'left', 'right' ), true ) ? $input['position'] : 'center';
+		}
+		return $out;
+	}
+	/**
 	 * Validate block-local presets without writing site or user options.
 	 *
 	 * @param mixed $input Untrusted preset list.
@@ -166,7 +183,7 @@ final class Settings {
 				'maxFps'        => self::number( $p['maxFps'] ?? null, 30, 1, 60 ),
 				'paused'        => true === ( $p['paused'] ?? false ),
 			),
-			'fallback'    => array( 'color' => self::color( $f['color'] ?? null ) ),
+			'fallback'    => self::fallback( $f ),
 		);
 		if ( array_key_exists( 'userPresets', $raw ) ) {
 			$config['userPresets'] = self::user_presets( $raw['userPresets'], $defs );

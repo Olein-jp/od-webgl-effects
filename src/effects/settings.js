@@ -43,6 +43,51 @@ export function sanitizeSettings( effect, input = {} ) {
 	return out;
 }
 // Validation is separate from activation so PHP and JS also agree on disabled data.
+export function sanitizeFallback( input ) {
+	input = input && typeof input === 'object' ? input : {};
+	const out = {
+		color:
+			input.color === '' || input.color === 'transparent'
+				? 'transparent'
+				: isColor( input.color )
+					? input.color
+					: '#01273e',
+	};
+	if (
+		Number.isInteger( input.imageId ) &&
+		input.imageId > 0 &&
+		input.imageId <= 2147483647
+	) {
+		out.imageId = input.imageId;
+		out.fit = [ 'cover', 'contain' ].includes( input.fit )
+			? input.fit
+			: 'cover';
+		out.position = [ 'center', 'top', 'bottom', 'left', 'right' ].includes(
+			input.position
+		)
+			? input.position
+			: 'center';
+	}
+	return out;
+}
+export function fallbackImageValue( url ) {
+	if (
+		typeof url !== 'string' ||
+		! /^https?:\/\//i.test( url ) ||
+		/[\u0000-\u001f\u007f]/.test( url )
+	)
+		return 'none';
+	return (
+		'url("' +
+		url.replace( /["'()\\]/g, ( c ) =>
+			encodeURIComponent( c )
+				.replace( /'/g, '%27' )
+				.replace( /\(/g, '%28' )
+				.replace( /\)/g, '%29' )
+		) +
+		'")'
+	);
+}
 export function sanitizeUserPresets( input, effects ) {
 	const seen = new Set();
 	return ( Array.isArray( input ) ? input.slice( 0, 10 ) : [] ).flatMap(
@@ -125,11 +170,7 @@ export function sanitizeConfig( raw, effects ) {
 			maxFps: clamp( p.maxFps, 30, 1, 60 ),
 			paused: p.paused === true,
 		},
-		fallback: {
-			color: isColor( raw.fallback?.color )
-				? raw.fallback.color
-				: baseColors[ 0 ],
-		},
+		fallback: sanitizeFallback( raw.fallback ),
 	};
 }
 export function normalize( raw, effects ) {

@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-12T06:17:03+00:00\n"
+"POT-Creation-Date: 2026-11-12T06:22:46+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: od-webgl-effects\n"
@@ -105,153 +105,197 @@ msgstr ""
 msgid "Line thickness"
 msgstr ""
 
-#: src/editor/index.js:94
+#: src/editor/index.js:101
 msgid "Fluid & Gradient"
 msgstr ""
 
-#: src/editor/index.js:95
+#: src/editor/index.js:102
 msgid "Waves & Geometry"
 msgstr ""
 
-#: src/editor/index.js:96
+#: src/editor/index.js:103
 msgid "Particles"
 msgstr ""
 
-#: src/editor/index.js:133
+#: src/editor/index.js:140
 msgid "Auto"
 msgstr ""
 
-#: src/editor/index.js:134
+#: src/editor/index.js:141
 msgid "Low"
 msgstr ""
 
-#: src/editor/index.js:135
+#: src/editor/index.js:142
 msgid "Medium"
 msgstr ""
 
-#: src/editor/index.js:136
+#: src/editor/index.js:143
 msgid "High"
 msgstr ""
 
-#: src/editor/index.js:147
+#: src/editor/index.js:154
 msgid "WebGL background"
 msgstr ""
 
-#: src/editor/index.js:152
+#: src/editor/index.js:159
 msgid "Enable WebGL background"
 msgstr ""
 
-#: src/editor/index.js:161
+#: src/editor/index.js:168
 msgid "Unsupported settings. Reset to edit safely."
 msgstr ""
 
-#: src/editor/index.js:169
+#: src/editor/index.js:176
 msgid "Reset"
 msgstr ""
 
-#: src/editor/index.js:176
+#: src/editor/index.js:183
 msgid "Category"
 msgstr ""
 
-#: src/editor/index.js:199
+#: src/editor/index.js:206
 msgid "Effect"
 msgstr ""
 
-#: src/editor/index.js:215
+#: src/editor/index.js:222
 msgid "Effect thumbnails"
 msgstr ""
 
-#: src/editor/index.js:251
+#: src/editor/index.js:258
 msgid "Preset"
 msgstr ""
 
-#: src/editor/index.js:255
+#: src/editor/index.js:262
 msgid "Custom"
 msgstr ""
 
-#: src/editor/index.js:284
+#: src/editor/index.js:291
 msgid "Preset name"
 msgstr ""
 
-#: src/editor/index.js:290
+#: src/editor/index.js:297
 msgid "Saved in this block. Up to 10 presets."
 msgstr ""
 
-#: src/editor/index.js:313
+#: src/editor/index.js:320
 msgid "Save block preset"
 msgstr ""
 
-#: src/editor/index.js:334
+#: src/editor/index.js:341
 msgid "Delete block preset"
 msgstr ""
 
-#: src/editor/index.js:354
+#: src/editor/index.js:361
 msgid "Reset effect settings"
 msgstr ""
 
 #. translators: %d: color position in the effect palette.
-#: src/editor/index.js:364
+#: src/editor/index.js:371
 #, js-format
 msgid "Color %d"
 msgstr ""
 
-#: src/editor/index.js:404
+#: src/editor/index.js:411
 msgid "Add color"
 msgstr ""
 
-#: src/editor/index.js:418
+#: src/editor/index.js:425
 msgid "Remove color"
 msgstr ""
 
-#: src/editor/index.js:433
+#: src/editor/index.js:440
 msgid "Effect details"
 msgstr ""
 
-#: src/editor/index.js:461
+#: src/editor/index.js:468
 msgid "Editor preview"
 msgstr ""
 
-#: src/editor/index.js:468
+#: src/editor/index.js:475
 msgid "Static"
 msgstr ""
 
-#: src/editor/index.js:475
+#: src/editor/index.js:482
 msgid "Live while selected"
 msgstr ""
 
-#: src/editor/index.js:482
+#: src/editor/index.js:489
 msgid "Stopped"
 msgstr ""
 
-#: src/editor/index.js:492
+#: src/editor/index.js:499
 msgid "Performance"
 msgstr ""
 
-#: src/editor/index.js:499
+#: src/editor/index.js:506
 msgid "Quality"
 msgstr ""
 
-#: src/editor/index.js:510
+#: src/editor/index.js:517
 msgid "Mobile quality"
 msgstr ""
 
-#: src/editor/index.js:521
+#: src/editor/index.js:528
 msgid "Maximum FPS"
 msgstr ""
 
-#: src/editor/index.js:533
+#: src/editor/index.js:540
 msgid "Static on published page"
 msgstr ""
 
-#: src/editor/index.js:545
+#: src/editor/index.js:552
 msgid "Fallback background"
 msgstr ""
 
-#: src/editor/index.js:566
-msgid "Check text contrast. Reduced motion uses the fallback color."
+#: src/editor/index.js:594
+msgid "Choose fallback image"
 msgstr ""
 
-#: src/editor/index.js:573
+#: src/editor/index.js:614
+msgid "Remove fallback image"
+msgstr ""
+
+#: src/editor/index.js:620
+msgid "Image fit"
+msgstr ""
+
+#: src/editor/index.js:628
+msgid "Cover"
+msgstr ""
+
+#: src/editor/index.js:635
+msgid "Contain"
+msgstr ""
+
+#: src/editor/index.js:651
+msgid "Image position"
+msgstr ""
+
+#: src/editor/index.js:659
+msgid "Center"
+msgstr ""
+
+#: src/editor/index.js:666
+msgid "Top"
+msgstr ""
+
+#: src/editor/index.js:673
+msgid "Bottom"
+msgstr ""
+
+#: src/editor/index.js:680
+msgid "Left"
+msgstr ""
+
+#: src/editor/index.js:687
+msgid "Right"
+msgstr ""
+
+#: src/editor/index.js:705
+msgid "Check text contrast. Reduced motion uses the fallback image or color."
+msgstr ""
+
+#: src/editor/index.js:712
 msgid "Cover media is hidden while WebGL is enabled. Its settings are preserved."
 msgstr ""
 

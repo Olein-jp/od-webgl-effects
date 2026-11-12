@@ -110,6 +110,7 @@ export class Manager {
 		e.renderer.pause();
 	}
 	release( e ) {
+		e.root.classList.remove( 'has-od-webgl-canvas' );
 		e.generation = ( e.generation || 0 ) + 1;
 		e.loading = false;
 		if ( e.canvas ) {
@@ -161,12 +162,17 @@ export class Manager {
 					return;
 				}
 				e.renderer = renderer;
+				e.root.classList.add( 'has-od-webgl-canvas' );
 				checkLifecycle( renderer );
 				e.loading = false;
 				e.canvas = e.layer.querySelector( 'canvas' );
 				e.onLost = ( event ) => {
 					event.preventDefault();
 					e.lost = true;
+					e.root.classList.remove( 'has-od-webgl-canvas' );
+					if ( e.canvas ) e.canvas.style.visibility = 'hidden';
+					e.pointer?.destroy();
+					e.pointer = null;
 					e.active = false;
 					e.renderer?.pause();
 				};

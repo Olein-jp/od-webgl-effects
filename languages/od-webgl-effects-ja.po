@@ -94,117 +94,113 @@ msgstr "波の数"
 msgid "Line thickness"
 msgstr "線の太さ"
 
-#: src/editor/index.js:133
+#: src/editor/index.js:140
 msgid "Auto"
 msgstr "自動"
 
-#: src/editor/index.js:134
+#: src/editor/index.js:141
 msgid "Low"
 msgstr "低"
 
-#: src/editor/index.js:135
+#: src/editor/index.js:142
 msgid "Medium"
 msgstr "中"
 
-#: src/editor/index.js:136
+#: src/editor/index.js:143
 msgid "High"
 msgstr "高"
 
-#: src/editor/index.js:147
+#: src/editor/index.js:154
 msgid "WebGL background"
 msgstr "WebGL 背景"
 
-#: src/editor/index.js:152
+#: src/editor/index.js:159
 msgid "Enable WebGL background"
 msgstr "WebGL 背景を有効にする"
 
-#: src/editor/index.js:161
+#: src/editor/index.js:168
 msgid "Unsupported settings. Reset to edit safely."
 msgstr "対応していない設定です。リセットして再設定してください。"
 
-#: src/editor/index.js:169
+#: src/editor/index.js:176
 msgid "Reset"
 msgstr "リセット"
 
-#: src/editor/index.js:176
+#: src/editor/index.js:183
 msgid "Category"
 msgstr "カテゴリー"
 
-#: src/editor/index.js:199
+#: src/editor/index.js:206
 msgid "Effect"
 msgstr "エフェクト"
 
-#: src/editor/index.js:251
+#: src/editor/index.js:258
 msgid "Preset"
 msgstr "プリセット"
 
-#: src/editor/index.js:255
+#: src/editor/index.js:262
 msgid "Custom"
 msgstr "カスタム"
 
 #. translators: %d: color position in the effect palette.
-#: src/editor/index.js:364
+#: src/editor/index.js:371
 #, js-format
 msgid "Color %d"
 msgstr "色 %d"
 
-#: src/editor/index.js:404
+#: src/editor/index.js:411
 msgid "Add color"
 msgstr "色を追加"
 
-#: src/editor/index.js:418
+#: src/editor/index.js:425
 msgid "Remove color"
 msgstr "色を減らす"
 
-#: src/editor/index.js:433
+#: src/editor/index.js:440
 msgid "Effect details"
 msgstr "エフェクトの詳細"
 
-#: src/editor/index.js:461
+#: src/editor/index.js:468
 msgid "Editor preview"
 msgstr "編集画面のプレビュー"
 
-#: src/editor/index.js:468
+#: src/editor/index.js:475
 msgid "Static"
 msgstr "静止画"
 
-#: src/editor/index.js:475
+#: src/editor/index.js:482
 msgid "Live while selected"
 msgstr "選択中に動かす"
 
-#: src/editor/index.js:482
+#: src/editor/index.js:489
 msgid "Stopped"
 msgstr "停止"
 
-#: src/editor/index.js:492
+#: src/editor/index.js:499
 msgid "Performance"
 msgstr "パフォーマンス"
 
-#: src/editor/index.js:499
+#: src/editor/index.js:506
 msgid "Quality"
 msgstr "描画品質"
 
-#: src/editor/index.js:510
+#: src/editor/index.js:517
 msgid "Mobile quality"
 msgstr "モバイルの描画品質"
 
-#: src/editor/index.js:521
+#: src/editor/index.js:528
 msgid "Maximum FPS"
 msgstr "FPS 上限"
 
-#: src/editor/index.js:533
+#: src/editor/index.js:540
 msgid "Static on published page"
 msgstr "公開画面で静止表示する"
 
-#: src/editor/index.js:545
+#: src/editor/index.js:552
 msgid "Fallback background"
 msgstr "フォールバック背景色"
 
-#: src/editor/index.js:566
-msgid "Check text contrast. Reduced motion uses the fallback color."
-msgstr "文字の読みやすさを確認してください。動きを減らす設定ではフォールバック背景色を表示します。"
-
-#: src/editor/index.js:573
+#: src/editor/index.js:712
 msgid "Cover media is hidden while WebGL is enabled. Its settings are preserved."
 msgstr "WebGL が有効な間はカバーの画像・動画を非表示にします。メディアの設定は保持されます。"
 
@@ -282,15 +278,15 @@ msgstr "変形"
 msgid "Waves"
 msgstr ""
 
-#: src/editor/index.js:96
+#: src/editor/index.js:103
 msgid "Particles"
 msgstr "パーティクル"
 
-#: src/editor/index.js:94
+#: src/editor/index.js:101
 msgid "Fluid & Gradient"
 msgstr "流体・グラデーション"
 
-#: src/editor/index.js:95
+#: src/editor/index.js:102
 msgid "Waves & Geometry"
 msgstr "波・幾何学"
 
@@ -326,27 +322,27 @@ msgstr "漂流の強さ"
 msgid "Connection distance"
 msgstr "接続距離"
 
-#: src/editor/index.js:215
+#: src/editor/index.js:222
 msgid "Effect thumbnails"
 msgstr "エフェクトのサムネイル"
 
-#: src/editor/index.js:284
+#: src/editor/index.js:291
 msgid "Preset name"
 msgstr "プリセット名"
 
-#: src/editor/index.js:290
+#: src/editor/index.js:297
 msgid "Saved in this block. Up to 10 presets."
 msgstr "このブロックに最大10件保存します。"
 
-#: src/editor/index.js:313
+#: src/editor/index.js:320
 msgid "Save block preset"
 msgstr "ブロックにプリセットを保存"
 
-#: src/editor/index.js:334
+#: src/editor/index.js:341
 msgid "Delete block preset"
 msgstr "ブロックのプリセットを削除"
 
-#: src/editor/index.js:354
+#: src/editor/index.js:361
 msgid "Reset effect settings"
 msgstr "エフェクト設定をリセット"
 
@@ -357,3 +353,51 @@ msgstr "ポインター操作への反応"
 #: src/effects/labels.js:4
 msgid "Interaction strength"
 msgstr "反応の強さ"
+
+#: src/editor/index.js:594
+msgid "Choose fallback image"
+msgstr "フォールバック画像を選択"
+
+#: src/editor/index.js:614
+msgid "Remove fallback image"
+msgstr "フォールバック画像を解除"
+
+#: src/editor/index.js:620
+msgid "Image fit"
+msgstr "画像の表示方法"
+
+#: src/editor/index.js:628
+msgid "Cover"
+msgstr "領域を覆う"
+
+#: src/editor/index.js:635
+msgid "Contain"
+msgstr "全体を収める"
+
+#: src/editor/index.js:651
+msgid "Image position"
+msgstr "画像の位置"
+
+#: src/editor/index.js:659
+msgid "Center"
+msgstr "中央"
+
+#: src/editor/index.js:666
+msgid "Top"
+msgstr "上"
+
+#: src/editor/index.js:673
+msgid "Bottom"
+msgstr "下"
+
+#: src/editor/index.js:680
+msgid "Left"
+msgstr "左"
+
+#: src/editor/index.js:687
+msgid "Right"
+msgstr "右"
+
+#: src/editor/index.js:705
+msgid "Check text contrast. Reduced motion uses the fallback image or color."
+msgstr "文字のコントラストを確認してください。動きを減らす設定ではフォールバック画像または色を表示します。"

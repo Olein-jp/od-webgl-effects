@@ -557,6 +557,90 @@
         },
         "userPresets": []
       }
+    },
+    {
+      "name": "attachment fallback is ID based and ignores arbitrary URLs",
+      "raw": {
+        "enabled": true,
+        "fallback": {
+          "imageId": 123.0,
+          "fit": "contain",
+          "position": "top",
+          "url": "javascript:alert(1)",
+          "color": "#abc"
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "imageId": 123,
+          "fit": "contain",
+          "position": "top",
+          "color": "#abc"
+        }
+      }
+    },
+    {
+      "name": "fallback invalid IDs and CSS values are rejected",
+      "raw": {
+        "enabled": true,
+        "fallback": {
+          "imageId": "123",
+          "fit": "url(x)",
+          "position": "x; color:red",
+          "color": "transparent"
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "transparent"
+        }
+      }
     }
   ],
   "definition": {

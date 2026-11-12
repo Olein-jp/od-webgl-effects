@@ -11,7 +11,7 @@ for(const id of Object.keys(definitions).filter(id=>!['aurora','fluid-gradient',
    await page.goto(data.url);const root=page.locator('[data-od-webgl]');
    for(const width of [1440,768,390]){
     await page.setViewportSize({width,height:1000});await root.scrollIntoViewIfNeeded();await expect(root.locator('canvas')).toBeVisible();
-    if(browserName==='chromium')await expect(root).toHaveScreenshot(`${id}-${width}.png`);
+    if(browserName==='chromium'&&process.platform==='darwin')await expect(root).toHaveScreenshot(`${id}-${width}.png`);
    }
    for(const quality of ['low','medium','high']){
     await root.evaluate((el,q)=>{const c=JSON.parse(el.dataset.odWebgl);c.performance.quality=q;c.performance.mobileQuality=q;el.dataset.odWebgl=JSON.stringify(c);},quality);

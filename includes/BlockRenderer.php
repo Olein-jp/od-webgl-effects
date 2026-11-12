@@ -40,7 +40,7 @@ final class BlockRenderer {
 			$fallback = is_array( $raw['fallback'] ?? null ) ? $raw['fallback'] : array();
 			$settings = array(
 				'enabled'  => false,
-				'fallback' => array( 'color' => Settings::color( $fallback['color'] ?? null ) ),
+				'fallback' => Settings::fallback( $fallback ),
 			);
 		}
 		/**

@@ -1,8 +1,13 @@
-import { dispatch } from '@wordpress/data';
+import { dispatch, useSelect } from '@wordpress/data';
 import { addFilter } from '@wordpress/hooks';
 import { createHigherOrderComponent } from '@wordpress/compose';
 import { useEffect, useRef, useState, Fragment } from '@wordpress/element';
-import { InspectorControls, useSettings } from '@wordpress/block-editor';
+import {
+	InspectorControls,
+	useSettings,
+	MediaUpload,
+	MediaUploadCheck,
+} from '@wordpress/block-editor';
 import {
 	PanelBody,
 	SelectControl,
@@ -22,6 +27,8 @@ import {
 	switchEffect,
 	applyPreset,
 	saveUserPreset,
+	sanitizeFallback,
+	fallbackImageValue,
 } from '../effects/settings';
 import { getManager } from '../frontend/manager';
 import { Control } from './controls';
@@ -552,19 +559,151 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 									value={ resolveColor(
 										state.fallback.color
 									) }
-									clearable={ false }
+									clearable={ true }
 									onChange={ ( value ) =>
 										patch( {
 											fallback: {
-												color: chooseColor( value ),
+												...state.fallback,
+												color: value
+													? chooseColor( value )
+													: 'transparent',
 											},
 										} )
 									}
 								/>
 							</fieldset>
+							<MediaUploadCheck>
+								<MediaUpload
+									allowedTypes={ [ 'image' ] }
+									value={ state.fallback.imageId || 0 }
+									onSelect={ ( image ) =>
+										patch( {
+											fallback: {
+												...state.fallback,
+												imageId: image.id,
+												fit: 'cover',
+												position: 'center',
+											},
+										} )
+									}
+									render={ ( { open } ) => (
+										<Button
+											variant="secondary"
+											onClick={ open }
+										>
+											{ __(
+												'Choose fallback image',
+												'od-webgl-effects'
+											) }
+										</Button>
+									) }
+								/>
+							</MediaUploadCheck>
+							{ !! state.fallback.imageId && (
+								<>
+									<Button
+										variant="tertiary"
+										onClick={ () =>
+											patch( {
+												fallback: {
+													color: state.fallback.color,
+												},
+											} )
+										}
+									>
+										{ __(
+											'Remove fallback image',
+											'od-webgl-effects'
+										) }
+									</Button>
+									<SelectControl
+										label={ __(
+											'Image fit',
+											'od-webgl-effects'
+										) }
+										value={ state.fallback.fit }
+										options={ [
+											{
+												value: 'cover',
+												label: __(
+													'Cover',
+													'od-webgl-effects'
+												),
+											},
+											{
+												value: 'contain',
+												label: __(
+													'Contain',
+													'od-webgl-effects'
+												),
+											},
+										] }
+										onChange={ ( fit ) =>
+											patch( {
+												fallback: {
+													...state.fallback,
+													fit,
+												},
+											} )
+										}
+									/>
+									<SelectControl
+										label={ __(
+											'Image position',
+											'od-webgl-effects'
+										) }
+										value={ state.fallback.position }
+										options={ [
+											{
+												value: 'center',
+												label: __(
+													'Center',
+													'od-webgl-effects'
+												),
+											},
+											{
+												value: 'top',
+												label: __(
+													'Top',
+													'od-webgl-effects'
+												),
+											},
+											{
+												value: 'bottom',
+												label: __(
+													'Bottom',
+													'od-webgl-effects'
+												),
+											},
+											{
+												value: 'left',
+												label: __(
+													'Left',
+													'od-webgl-effects'
+												),
+											},
+											{
+												value: 'right',
+												label: __(
+													'Right',
+													'od-webgl-effects'
+												),
+											},
+										] }
+										onChange={ ( position ) =>
+											patch( {
+												fallback: {
+													...state.fallback,
+													position,
+												},
+											} )
+										}
+									/>
+								</>
+							) }
 							<Notice status="info" isDismissible={ false }>
 								{ __(
-									'Check text contrast. Reduced motion uses the fallback color.',
+									'Check text contrast. Reduced motion uses the fallback image or color.',
 									'od-webgl-effects'
 								) }
 							</Notice>
@@ -602,21 +741,56 @@ addFilter(
 	'od-webgl/preview-wrapper',
 	createHigherOrderComponent(
 		( BlockListBlock ) => ( props ) => {
-			const state = supported( props.name )
-				? normalize( props.attributes?.odWebgl, effects )
+			const raw = supported( props.name )
+				? props.attributes?.odWebgl
 				: null;
-			if ( ! state ) return <BlockListBlock { ...props } />;
+			const state = normalize( raw, effects );
+			const fallback =
+				state?.fallback ||
+				( raw?.enabled === true
+					? sanitizeFallback( raw.fallback )
+					: null );
+			const media = useSelect(
+				( select ) =>
+					fallback?.imageId
+						? select( 'core' ).getMedia( fallback.imageId )
+						: null,
+				[ fallback?.imageId ]
+			);
+			if ( ! fallback ) return <BlockListBlock { ...props } />;
+			const image = [
+				'image/jpeg',
+				'image/png',
+				'image/gif',
+				'image/webp',
+				'image/avif',
+			].includes( media?.mime_type )
+				? fallbackImageValue(
+						media?.media_details?.sizes?.large?.source_url ||
+							media?.source_url
+					)
+				: 'none';
 			return (
 				<BlockListBlock
 					{ ...props }
-					className={ [ props.className, 'has-od-webgl' ]
+					className={ [
+						props.className,
+						'has-od-webgl',
+						fallback.color === 'transparent' &&
+							'has-od-webgl-standard-fallback',
+						image !== 'none' && 'has-od-webgl-fallback-image',
+					]
 						.filter( Boolean )
 						.join( ' ' ) }
 					wrapperProps={ {
 						...props.wrapperProps,
 						style: {
 							...props.wrapperProps?.style,
-							'--od-webgl-fallback': state.fallback.color,
+							'--od-webgl-fallback': fallback.color,
+							'--od-webgl-image': image,
+							'--od-webgl-fit': fallback.fit || 'cover',
+							'--od-webgl-position':
+								fallback.position || 'center',
 						},
 					} }
 				/>
