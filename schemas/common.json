@@ -1,0 +1,33 @@
+{
+  "colors": [
+    "#01273e",
+    "#074073",
+    "#faa500"
+  ],
+  "controls": [
+    {
+      "id": "speed",
+      "type": "range",
+      "label": "Speed",
+      "min": 0,
+      "max": 3,
+      "step": 0.01
+    },
+    {
+      "id": "intensity",
+      "type": "range",
+      "label": "Intensity",
+      "min": 0,
+      "max": 2,
+      "step": 0.01
+    },
+    {
+      "id": "opacity",
+      "type": "range",
+      "label": "Opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.01
+    }
+  ]
+}

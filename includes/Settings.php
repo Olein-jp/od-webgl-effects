@@ -10,7 +10,7 @@ namespace Olein\WebGLEffects;
 /** Settings integration. */
 final class Settings {
 	/**
-	 * Load the bundled effect allowlist and numeric bounds.
+	 * Load the bundled effect allowlist and control schemas.
 	 *
 	 * @return array
 	 */
@@ -50,7 +50,7 @@ final class Settings {
 		if ( is_string( $value ) && preg_match( '/^var\(--wp--preset--color--[a-z0-9-]+\)$/D', $value ) ) {
 			return $value;
 		}
-		return is_string( $value ) && sanitize_hex_color( $value ) ? $value : $fallback;
+		return is_string( $value ) && preg_match( '/^#(?:[a-f0-9]{3}|[a-f0-9]{6})$/iD', $value ) ? $value : $fallback;
 	}
 	/**
 	 * Clamp a finite numeric input.
@@ -62,7 +62,49 @@ final class Settings {
 	 * @return float
 	 */
 	public static function number( $value, $fallback, $min, $max ) {
-		return is_numeric( $value ) && is_finite( (float) $value ) ? max( $min, min( $max, (float) $value ) ) : $fallback;
+		return ( is_int( $value ) || is_float( $value ) ) && is_finite( (float) $value ) ? max( $min, min( $max, (float) $value ) ) : $fallback;
+	}
+	/**
+	 * Validate all control types using the same schema as JavaScript.
+	 *
+	 * @param array $def Bundled effect definition.
+	 * @param mixed $input Untrusted settings.
+	 * @return array
+	 */
+	public static function sanitize_settings( $def, $input ) {
+		// phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
+		$common   = json_decode( file_get_contents( dirname( __DIR__ ) . '/schemas/common.json' ), true );
+		$input    = is_array( $input ) ? $input : array();
+		$settings = array();
+		foreach ( array_merge( $common['controls'], $def['controls'] ) as $control ) {
+			$id       = $control['id'];
+			$value    = $input[ $id ] ?? null;
+			$fallback = $def['defaults'][ $id ] ?? null;
+			switch ( $control['type'] ) {
+				case 'range':
+				case 'number':
+					$settings[ $id ] = self::number( $value, $fallback, $control['min'] ?? -1e6, $control['max'] ?? 1e6 );
+					break;
+				case 'toggle':
+					$settings[ $id ] = is_bool( $value ) ? $value : $fallback;
+					break;
+				case 'select':
+					$settings[ $id ] = in_array( $value, array_column( $control['options'], 'value' ), true ) ? $value : $fallback;
+					break;
+				case 'color':
+				case 'colorPalette':
+					$settings[ $id ] = self::color( $value, $fallback );
+					break;
+				case 'text':
+					// Count Unicode code points, matching Array.from() in JavaScript.
+					$characters      = is_string( $value ) ? preg_split( '//u', $value, -1, PREG_SPLIT_NO_EMPTY ) : false;
+					$settings[ $id ] = is_array( $characters ) ? implode( '', array_slice( $characters, 0, 200 ) ) : $fallback;
+					break;
+			}
+		}
+		$colors             = isset( $input['colors'] ) && is_array( $input['colors'] ) && array_is_list( $input['colors'] ) && count( $input['colors'] ) >= 2 ? array_slice( $input['colors'], 0, 5 ) : $common['colors'];
+		$settings['colors'] = array_map( array( self::class, 'color' ), $colors );
+		return $settings;
 	}
 	/**
 	 * Validate settings and discard unknown parameters.
@@ -79,40 +121,9 @@ final class Settings {
 		if ( ! is_string( $effect ) || ! isset( $defs[ $effect ] ) ) {
 			return null;
 		}
-		$def      = $defs[ $effect ];
-		$input    = isset( $raw['settings'] ) && is_array( $raw['settings'] ) ? $raw['settings'] : array();
-		$settings = $def['defaults'];
-		$controls = array_merge(
-			array(
-				array(
-					'id'  => 'speed',
-					'min' => 0,
-					'max' => 3,
-				),
-				array(
-					'id'  => 'intensity',
-					'min' => 0,
-					'max' => 2,
-				),
-				array(
-					'id'  => 'opacity',
-					'min' => 0,
-					'max' => 1,
-				),
-			),
-			$def['controls']
-		);
-		foreach ( $controls as $control ) {
-			$id              = $control['id'];
-			$settings[ $id ] = self::number( $input[ $id ] ?? null, $settings[ $id ], $control['min'], $control['max'] );
-		}
-		$colors             = isset( $input['colors'] ) && is_array( $input['colors'] ) ? array_slice( $input['colors'], 0, 5 ) : array( '#01273e', '#074073', '#faa500' );
-		$settings['colors'] = array_map( array( self::class, 'color' ), $colors );
-		if ( count( $settings['colors'] ) < 2 ) {
-			$settings['colors'] = array( '#01273e', '#074073' );
-		}
-		$p = isset( $raw['performance'] ) && is_array( $raw['performance'] ) ? $raw['performance'] : array();
-		$f = isset( $raw['fallback'] ) && is_array( $raw['fallback'] ) ? $raw['fallback'] : array();
+		$settings = self::sanitize_settings( $defs[ $effect ], $raw['settings'] ?? null );
+		$p        = isset( $raw['performance'] ) && is_array( $raw['performance'] ) ? $raw['performance'] : array();
+		$f        = isset( $raw['fallback'] ) && is_array( $raw['fallback'] ) ? $raw['fallback'] : array();
 		return array(
 			'version'     => 1,
 			'enabled'     => true === ( $raw['enabled'] ?? false ),

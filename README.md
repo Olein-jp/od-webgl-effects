@@ -114,6 +114,7 @@ composer install
 - [アーキテクチャ・描画制御](docs/architecture.md)
 - [フック・独自ブロックへの対応](docs/hooks.md)
 - [内部エフェクト API](docs/effect-api.md)
+- [設定スキーマ・保存互換性・切替の規則](docs/settings.md)
 - [開発・テスト・翻訳・配布](docs/development.md)
 - [検証済み項目と制限](docs/validation.md)
 

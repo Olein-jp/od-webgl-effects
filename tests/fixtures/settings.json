@@ -1,0 +1,597 @@
+{
+  "configs": [
+    {
+      "name": "Phase 1 values without an explicit version",
+      "raw": {
+        "enabled": true,
+        "effect": "aurora"
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "unknown top-level and shader input discarded",
+      "raw": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "shader": "void main(){}",
+        "settings": {
+          "shader": "bad",
+          "speed": "2",
+          "opacity": false,
+          "colors": [
+            "#fff"
+          ]
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "numeric bounds and invalid colors",
+      "raw": {
+        "enabled": true,
+        "effect": "aurora",
+        "settings": {
+          "speed": 999,
+          "intensity": -10,
+          "colors": [
+            "url(x)",
+            "#abc",
+            "var(--wp--preset--color--accent)"
+          ]
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 3,
+          "intensity": 0,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#abc",
+            "var(--wp--preset--color--accent)"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "at most five colors",
+      "raw": {
+        "enabled": true,
+        "effect": "aurora",
+        "settings": {
+          "colors": [
+            "#abc",
+            "#abc",
+            "#abc",
+            "#abc",
+            "#abc",
+            "#abc",
+            "#abc"
+          ]
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#abc",
+            "#abc",
+            "#abc",
+            "#abc",
+            "#abc"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "performance strict types and allowlist",
+      "raw": {
+        "enabled": true,
+        "effect": "aurora",
+        "performance": {
+          "quality": "custom",
+          "mobileQuality": "high",
+          "maxFps": "60",
+          "paused": 1,
+          "shader": "x"
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "high",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "performance numeric clamps",
+      "raw": {
+        "enabled": true,
+        "performance": {
+          "quality": "medium",
+          "mobileQuality": "auto",
+          "maxFps": 99,
+          "paused": true
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "medium",
+          "mobileQuality": "auto",
+          "maxFps": 60,
+          "paused": true
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "disabled configs can validate without activation",
+      "raw": {
+        "enabled": false,
+        "effect": "aurora"
+      },
+      "expected": {
+        "version": 1,
+        "enabled": false,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "enabled never coerces truthy values",
+      "raw": {
+        "enabled": "true"
+      },
+      "expected": {
+        "version": 1,
+        "enabled": false,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "color and preset safety",
+      "raw": {
+        "enabled": true,
+        "preset": "SOFT-BLUE<script>İ",
+        "settings": {
+          "colors": [
+            "#fff\n",
+            "var(--wp--preset--color--accent)\n"
+          ]
+        },
+        "fallback": {
+          "color": "url(x)"
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "soft-bluescript",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#01273e"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "#01273e"
+        }
+      }
+    },
+    {
+      "name": "preserve theme reference",
+      "raw": {
+        "enabled": true,
+        "fallback": {
+          "color": "var(--wp--preset--color--accent)"
+        }
+      },
+      "expected": {
+        "version": 1,
+        "enabled": true,
+        "effect": "aurora",
+        "preset": "",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "scale": 2,
+          "glow": 0.6,
+          "direction": 0,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#faa500"
+          ]
+        },
+        "performance": {
+          "quality": "auto",
+          "mobileQuality": "low",
+          "maxFps": 30,
+          "paused": false
+        },
+        "fallback": {
+          "color": "var(--wp--preset--color--accent)"
+        }
+      }
+    },
+    {
+      "name": "invalid configuration 10",
+      "raw": {
+        "version": 2,
+        "enabled": true
+      },
+      "expected": null
+    },
+    {
+      "name": "invalid configuration 11",
+      "raw": {
+        "version": "1",
+        "enabled": true
+      },
+      "expected": null
+    },
+    {
+      "name": "invalid configuration 12",
+      "raw": {
+        "effect": "external",
+        "enabled": true
+      },
+      "expected": null
+    },
+    {
+      "name": "invalid configuration 13",
+      "raw": {
+        "effect": {},
+        "enabled": true
+      },
+      "expected": null
+    },
+    {
+      "name": "invalid configuration 14",
+      "raw": null,
+      "expected": null
+    }
+  ],
+  "definition": {
+    "defaults": {
+      "speed": 0.4,
+      "intensity": 0.7,
+      "opacity": 1,
+      "quantity": 2,
+      "choice": "a",
+      "flag": false,
+      "tint": "#fff",
+      "accent": "#abc",
+      "label": "default",
+      "ignored": "remove"
+    },
+    "controls": [
+      {
+        "id": "quantity",
+        "type": "number",
+        "min": 1,
+        "max": 10
+      },
+      {
+        "id": "choice",
+        "type": "select",
+        "options": [
+          {
+            "value": "a"
+          },
+          {
+            "value": "b"
+          }
+        ]
+      },
+      {
+        "id": "flag",
+        "type": "toggle"
+      },
+      {
+        "id": "tint",
+        "type": "color"
+      },
+      {
+        "id": "accent",
+        "type": "colorPalette"
+      },
+      {
+        "id": "label",
+        "type": "text"
+      }
+    ]
+  },
+  "controls": [
+    {
+      "name": "all seven control types accept valid input",
+      "input": {
+        "quantity": 50,
+        "choice": "b",
+        "flag": true,
+        "tint": "#123456",
+        "accent": "var(--wp--preset--color--accent)",
+        "label": "日本語😀"
+      },
+      "expected": {
+        "speed": 0.4,
+        "intensity": 0.7,
+        "opacity": 1,
+        "quantity": 10,
+        "choice": "b",
+        "flag": true,
+        "tint": "#123456",
+        "accent": "var(--wp--preset--color--accent)",
+        "label": "日本語😀",
+        "colors": [
+          "#01273e",
+          "#074073",
+          "#faa500"
+        ]
+      }
+    },
+    {
+      "name": "strict invalid control types fall back",
+      "input": {
+        "quantity": "9",
+        "choice": true,
+        "flag": 1,
+        "tint": {},
+        "accent": "red",
+        "label": 9
+      },
+      "expected": {
+        "speed": 0.4,
+        "intensity": 0.7,
+        "opacity": 1,
+        "quantity": 2,
+        "choice": "a",
+        "flag": false,
+        "tint": "#fff",
+        "accent": "#abc",
+        "label": "default",
+        "colors": [
+          "#01273e",
+          "#074073",
+          "#faa500"
+        ]
+      }
+    },
+    {
+      "name": "text truncates by code point",
+      "input": {
+        "label": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀"
+      },
+      "expected": {
+        "speed": 0.4,
+        "intensity": 0.7,
+        "opacity": 1,
+        "quantity": 2,
+        "choice": "a",
+        "flag": false,
+        "tint": "#fff",
+        "accent": "#abc",
+        "label": "😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀😀",
+        "colors": [
+          "#01273e",
+          "#074073",
+          "#faa500"
+        ]
+      }
+    },
+    {
+      "name": "palette object is not an array",
+      "input": {
+        "colors": {
+          "a": "#fff",
+          "b": "#000"
+        }
+      },
+      "expected": {
+        "speed": 0.4,
+        "intensity": 0.7,
+        "opacity": 1,
+        "quantity": 2,
+        "choice": "a",
+        "flag": false,
+        "tint": "#fff",
+        "accent": "#abc",
+        "label": "default",
+        "colors": [
+          "#01273e",
+          "#074073",
+          "#faa500"
+        ]
+      }
+    }
+  ]
+}

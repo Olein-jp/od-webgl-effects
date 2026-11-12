@@ -22,3 +22,23 @@ check( BlockSupport::supports( 'core/group', array( 'color' => array() ) ), 'bac
 check( ! BlockSupport::supports( 'core/group', array( 'color' => array( 'background' => false ) ) ), 'explicit background exclusion respected' );
 $filters['od_webgl_supported_blocks'] = static function () { return array( 'example/section' ); };
 check( BlockSupport::supports( 'example/section', array( 'color' => true ) ) && ! BlockSupport::supports( 'core/group', array( 'color' => true ) ), 'block filter adds and removes supported blocks' );
+
+// Identical inputs/expectations are also exercised by Jest.
+$fixtures = json_decode( file_get_contents( __DIR__ . '/../fixtures/settings.json' ), true );
+function canonical( $value ) {
+	if ( ! is_array( $value ) ) { return $value; }
+	if ( ! array_is_list( $value ) ) { ksort( $value ); }
+	return array_map( 'canonical', $value );
+}
+foreach ( $fixtures['configs'] as $case ) {
+	$actual = json_decode( json_encode( Settings::sanitize( $case['raw'] ) ), true );
+	check( canonical( $case['expected'] ) === canonical( $actual ), 'shared config: ' . $case['name'] );
+}
+foreach ( $fixtures['controls'] as $case ) {
+	$actual = json_decode( json_encode( Settings::sanitize_settings( $fixtures['definition'], $case['input'] ) ), true );
+	check( canonical( $case['expected'] ) === canonical( $actual ), 'shared control: ' . $case['name'] );
+}
+foreach ( array( NAN, INF, -INF ) as $value ) {
+	$s = Settings::sanitize( array( 'enabled' => true, 'settings' => array( 'speed' => $value ), 'performance' => array( 'maxFps' => $value ) ) );
+	check( 0.4 === $s['settings']['speed'] && 30 === $s['performance']['maxFps'], 'nonfinite values use defaults' );
+}

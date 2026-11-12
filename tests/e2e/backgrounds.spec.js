@@ -61,12 +61,37 @@ test('editor preview, persistence, validation, undo and removal', async ({ page 
 	await page.evaluate((id) => { const store = wp.data.dispatch('core/block-editor');store.updateBlockAttributes(id, { odWebgl: { ...wp.data.select('core/block-editor').getBlock(id).attributes.odWebgl, effect: 'waves' } }); }, result.id);
 	await page.evaluate(() => wp.data.dispatch('core/editor').undo());
 	await expect.poll(() => page.evaluate(() => wp.data.select('core/block-editor').getBlocks()[0]?.attributes.odWebgl?.effect)).toBe('aurora');
+	await page.evaluate(() => wp.data.dispatch('core/editor').redo());
+	await expect.poll(() => page.evaluate(() => wp.data.select('core/block-editor').getBlocks()[0]?.attributes.odWebgl?.effect)).toBe('waves');
+	await page.evaluate(() => wp.data.dispatch('core/editor').undo());
+	await expect.poll(() => page.evaluate(() => wp.data.select('core/block-editor').getBlocks()[0]?.attributes.odWebgl?.effect)).toBe('aurora');
 	result.id = await page.evaluate(() => wp.data.select('core/block-editor').getBlocks()[0].clientId);
 	await page.evaluate((id) => wp.data.dispatch('core/block-editor').duplicateBlocks([id]), result.id);
 	await expect(frame.locator('.has-od-webgl')).toHaveCount(5);
 	await page.evaluate((id) => wp.data.dispatch('core/block-editor').removeBlock(id), result.id);
 	await expect(frame.locator('.has-od-webgl')).toHaveCount(4);
 	await cleanup(page, data.id);
+});
+test('version 1 settings survive REST save, re-edit and server validation', async ({ page }) => {
+	await editor(page);
+	const data = await page.evaluate(async () => {
+		const raw = {version: 1, enabled: true, effect: 'aurora', preset: '', settings: {speed: 1.25, intensity: 0.8, opacity: 0.7, scale: 3, glow: 0.4, direction: 45, colors: ['var(--wp--preset--color--contrast)', '#abc']}, performance: {quality: 'medium', mobileQuality: 'low', maxFps: 24, paused: true}, fallback: {color: '#123456'}};
+		const block = wp.blocks.createBlock('core/group', {odWebgl: raw}, [wp.blocks.createBlock('core/paragraph', {content: 'Schema round trip'})]);
+		const content = wp.blocks.serialize([block]);
+		const post = await wp.apiFetch({path: '/wp/v2/posts', method: 'POST', data: {title: 'OD schema fixture', content, status: 'publish'}});
+		return {id: post.id, url: post.link, raw, content};
+	});
+	try {
+		await page.goto('/wp-admin/post.php?post=' + data.id + '&action=edit');
+		await page.waitForFunction(() => wp.data.select('core/block-editor').getBlocks().length > 0);
+		expect(await page.evaluate(() => wp.data.select('core/block-editor').getBlocks()[0].attributes.odWebgl)).toEqual(data.raw);
+		expect(await page.evaluate(() => wp.blocks.serialize(wp.data.select('core/block-editor').getBlocks()))).toBe(data.content);
+		await page.goto(data.url);
+		const rendered = JSON.parse(await page.locator('[data-od-webgl]').getAttribute('data-od-webgl'));
+		expect(rendered).toEqual(data.raw);
+	} finally {
+		await cleanup(page, data.id);
+	}
 });
 test('public effects, responsive sizes, links, no errors and reduced motion', async ({ page }) => {
 	await editor(page); const data = await fixture(page); const errors = [];

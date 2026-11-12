@@ -13,7 +13,12 @@ import {
 } from '@wordpress/components';
 import { __, sprintf } from '@wordpress/i18n';
 import { effects } from '../effects';
-import { normalize, commonControls, baseColors } from '../effects/settings';
+import {
+	normalize,
+	commonControls,
+	switchEffect,
+	applyPreset,
+} from '../effects/settings';
 import { getManager } from '../frontend/manager';
 import { Control } from './controls';
 const config = window.odWebglConfig || { blocks: [], defaults: {} };
@@ -88,15 +93,7 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 		patch( { settings: { ...state.settings, [ id ]: value }, preset: '' } );
 	const performance = ( id, value ) =>
 		patch( { performance: { ...state.performance, [ id ]: value } } );
-	const setEffect = ( id ) =>
-		patch( {
-			effect: id,
-			preset: 'soft-blue',
-			settings: {
-				...effects.get( id ).defaults,
-				colors: [ ...baseColors ],
-			},
-		} );
+	const setEffect = ( id ) => patch( switchEffect( state, id, effects ) );
 	const chooseColor = ( value ) => {
 		const match = colors.find(
 			( c ) => c.color.toLowerCase() === value?.toLowerCase()
@@ -219,13 +216,13 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 										( p ) => p.id === id
 									);
 									if ( preset )
-										patch( {
-											preset: id,
-											settings: {
-												...effect.defaults,
-												...preset.settings,
-											},
-										} );
+										patch(
+											applyPreset(
+												state,
+												preset,
+												effects
+											)
+										);
 								} }
 							/>
 							{ state.settings.colors.map( ( value, index ) => (

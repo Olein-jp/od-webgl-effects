@@ -37,6 +37,22 @@ od_webgl_test_check( false !== strpos( Olein\WebGLEffects\BlockRenderer::render(
 $markup = '<!-- wp:group {"odWebgl":{"version":1,"enabled":true,"effect":"aurora"}} --><div class="wp-block-group"><!-- wp:paragraph --><p>Content stays</p><!-- /wp:paragraph --></div><!-- /wp:group -->';
 $parsed = parse_blocks( $markup );
 od_webgl_test_check( 'aurora' === $parsed[0]['attrs']['odWebgl']['effect'] && $markup === serialize_blocks( $parsed ), 'block comments preserve settings on round trip' );
+$fixtures = json_decode( file_get_contents( __DIR__ . '/../fixtures/settings.json' ), true );
+foreach ( $fixtures['configs'] as $case ) {
+	// Exercise validation with actual WordPress sanitizers, not standalone stubs.
+	$actual = json_decode( wp_json_encode( Settings::sanitize( $case['raw'] ) ), true );
+	od_webgl_test_check( $actual == $case['expected'], 'WordPress schema fixture: ' . $case['name'] );
+}
+foreach ( Settings::definitions() as $id => $definition ) {
+	$copy = $parsed;
+	$copy[0]['attrs']['odWebgl'] = array( 'version' => 1, 'enabled' => true, 'effect' => $id, 'settings' => array( 'speed' => 1.25, 'colors' => array( 'var(--wp--preset--color--contrast)', '#abc' ) ) );
+	$round_trip = parse_blocks( serialize_blocks( $copy ) );
+	od_webgl_test_check( $round_trip[0]['attrs']['odWebgl'] === $copy[0]['attrs']['odWebgl'], "$id version 1 data survives serialization" );
+	$output = do_blocks( serialize_blocks( $copy ) );
+	$tags = new WP_HTML_Tag_Processor( $output ); $tags->next_tag();
+	$data = json_decode( $tags->get_attribute( 'data-od-webgl' ), true );
+	od_webgl_test_check( $id === $data['effect'] && 1.25 === $data['settings']['speed'] && 'var(--wp--preset--color--contrast)' === $data['settings']['colors'][0], "$id server allowlist matches schema and retains settings" );
+}
 echo 'WordPress ' . get_bloginfo( 'version' ) . " integration complete\n";
 
 remove_filter( 'render_block', array( Olein\WebGLEffects\BlockRenderer::class, 'render' ), 10 );

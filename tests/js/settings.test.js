@@ -1,4 +1,5 @@
-import { definitions, normalize, sanitizeSettings } from '../../src/effects/settings';
+import { definitions, normalize, sanitizeSettings, sanitizeConfig, switchEffect, applyPreset } from '../../src/effects/settings';
+import fixtures from '../fixtures/settings.json';
 import { EffectRegistry, RendererRegistry, checkLifecycle } from '../../src/effects/registry';
 const engines = new RendererRegistry();
 engines.register('ogl', () => {});
@@ -26,4 +27,34 @@ test('all schema control types validate', () => {
 	const def = { defaults: { choice: 'a', flag: false, label: 'default', color: '#fff' }, controls: [{ id: 'choice', type: 'select', options: [{ value: 'a' }] }, { id: 'flag', type: 'toggle' }, { id: 'label', type: 'text' }, { id: 'color', type: 'color' }] };
 	const s = sanitizeSettings(def, { choice: 'bad', flag: 1, label: 'a'.repeat(500), color: 'url(x)' });
 	expect(s.choice).toBe('a'); expect(s.flag).toBe(false); expect(s.label.length).toBe(200); expect(s.color).toBe('#fff');
+});
+test.each(fixtures.configs)('PHP/JS shared config: $name', ({ raw, expected }) => {
+	expect(sanitizeConfig(raw, effects)).toEqual(expected);
+});
+test.each(fixtures.controls)('PHP/JS shared controls: $name', ({ input, expected }) => {
+	expect(sanitizeSettings(fixtures.definition, input)).toEqual(expected);
+});
+test('nonfinite numbers never enter any numeric control', () => {
+	for (const value of [NaN, Infinity, -Infinity]) {
+		const s = sanitizeConfig({ enabled: true, settings: { speed: value }, performance: { maxFps: value } }, effects);
+		expect(s.settings.speed).toBe(0.4);
+		expect(s.performance.maxFps).toBe(30);
+	}
+});
+test('effect changes preserve common controls; presets reset only effect settings', () => {
+	const old = sanitizeConfig({enabled: true, effect: 'aurora', preset: 'warm', settings: {speed: 2, opacity: 0.5, glow: 1.2, colors: ['#fff', 'var(--wp--preset--color--accent)']}, performance: {quality: 'high'}, fallback: {color: '#abc'}}, effects);
+	const changed = switchEffect(old, 'waves', effects);
+	expect(changed.preset).toBe('');
+	expect(changed.settings.speed).toBe(2);
+	expect(changed.settings.opacity).toBe(0.5);
+	expect(changed.settings.colors).toEqual(old.settings.colors);
+	expect(changed.settings.glow).toBeUndefined();
+	expect(changed.settings.count).toBe(5);
+	const applied = applyPreset(changed, {id: 'example', settings: {count: 99, shader: 'x', colors: ['#fff', '#000']}}, effects);
+	expect(applied.settings.count).toBe(12);
+	expect(applied.settings.speed).toBe(0.4);
+	expect(applied.settings.shader).toBeUndefined();
+	expect(applied.performance).toEqual(old.performance);
+	expect(applied.fallback).toEqual(old.fallback);
+	expect(old.settings.glow).toBe(1.2);
 });
