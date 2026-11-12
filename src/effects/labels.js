@@ -1,5 +1,14 @@
 import { __ } from '@wordpress/i18n';
 export const labels = {
+	'Floating Particles': __( 'Floating Particles', 'od-webgl-effects' ),
+	'Particle Connections': __( 'Particle Connections', 'od-webgl-effects' ),
+	'Flow Field': __( 'Flow Field', 'od-webgl-effects' ),
+	Stars: __( 'Stars', 'od-webgl-effects' ),
+	'Particle count': __( 'Particle count', 'od-webgl-effects' ),
+	'Particle size': __( 'Particle size', 'od-webgl-effects' ),
+	Drift: __( 'Drift', 'od-webgl-effects' ),
+	'Connection distance': __( 'Connection distance', 'od-webgl-effects' ),
+
 	Amplitude: __( 'Amplitude', 'od-webgl-effects' ),
 	'Animated Grid': __( 'Animated Grid', 'od-webgl-effects' ),
 	Aurora: __( 'Aurora', 'od-webgl-effects' ),

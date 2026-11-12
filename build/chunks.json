@@ -1,13 +1,18 @@
 [
   "editor.js",
   "frontend.js",
+  "effect-floating-particles.eca781d2.js",
+  "effect-particle-connections.18f9cf40.js",
+  "effect-flow-field.c883eab5.js",
+  "effect-stars.465af0bf.js",
   "effect-mesh-gradient.dfb675d8.js",
   "effect-ripple.d2f0d1dd.js",
   "effect-noise-field.1264a3ca.js",
   "effect-animated-grid.2a698e34.js",
   "effect-aurora.1f650ae5.js",
-  "effect-fluid-gradient.c49df72d.js",
+  "effect-fluid-gradient.4ede49ae.js",
   "effect-waves.76a1bab6.js",
-  "engine-ogl.f0c08bbf.js",
-  "341.6a947d1a.js"
+  "engine-particles.693ede37.js",
+  "engine-ogl.96d0777d.js",
+  "527.155737cc.js"
 ]

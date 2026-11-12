@@ -1,6 +1,6 @@
 import { Renderer, Program, Mesh, Triangle } from 'ogl';
 import { vertex } from '../effects/shader-common';
-function colorVector( value, element ) {
+export function colorVector( value, element ) {
 	const doc = element.ownerDocument;
 	const probe = doc.createElement( 'span' );
 	probe.style.color = value;

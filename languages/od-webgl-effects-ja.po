@@ -45,52 +45,52 @@ msgid "Opacity"
 msgstr "不透明度"
 
 #: src/editor/controls.js:13
-#: src/effects/labels.js:20
+#: src/effects/labels.js:29
 msgid "Noise scale"
 msgstr "ノイズのスケール"
 
 #: src/editor/controls.js:14
-#: src/effects/labels.js:14
+#: src/effects/labels.js:23
 msgid "Glow"
 msgstr "グローの強度"
 
 #: src/editor/controls.js:15
-#: src/effects/labels.js:9
+#: src/effects/labels.js:18
 msgid "Direction"
 msgstr "方向"
 
 #: src/editor/controls.js:16
-#: src/effects/labels.js:23
+#: src/effects/labels.js:32
 msgid "Scale"
 msgstr "スケール"
 
 #: src/editor/controls.js:17
-#: src/effects/labels.js:10
+#: src/effects/labels.js:19
 msgid "Distortion"
 msgstr "歪み"
 
 #: src/editor/controls.js:18
-#: src/effects/labels.js:18
+#: src/effects/labels.js:27
 msgid "Mix"
 msgstr "混合の強度"
 
 #: src/editor/controls.js:19
-#: src/effects/labels.js:3
+#: src/effects/labels.js:12
 msgid "Amplitude"
 msgstr "振幅"
 
 #: src/editor/controls.js:20
-#: src/effects/labels.js:13
+#: src/effects/labels.js:22
 msgid "Frequency"
 msgstr "周波数"
 
 #: src/editor/controls.js:21
-#: src/effects/labels.js:27
+#: src/effects/labels.js:36
 msgid "Wave count"
 msgstr "波の数"
 
 #: src/editor/controls.js:22
-#: src/effects/labels.js:16
+#: src/effects/labels.js:25
 msgid "Line thickness"
 msgstr "線の太さ"
 
@@ -130,81 +130,81 @@ msgstr "リセット"
 msgid "Category"
 msgstr "カテゴリー"
 
-#: src/editor/index.js:180
+#: src/editor/index.js:193
 msgid "Effect"
 msgstr "エフェクト"
 
-#: src/editor/index.js:199
+#: src/editor/index.js:212
 msgid "Preset"
 msgstr "プリセット"
 
-#: src/editor/index.js:203
+#: src/editor/index.js:216
 msgid "Custom"
 msgstr "カスタム"
 
 #. translators: %d: color position in the effect palette.
-#: src/editor/index.js:233
+#: src/editor/index.js:246
 #, js-format
 msgid "Color %d"
 msgstr "色 %d"
 
-#: src/editor/index.js:273
+#: src/editor/index.js:286
 msgid "Add color"
 msgstr "色を追加"
 
-#: src/editor/index.js:287
+#: src/editor/index.js:300
 msgid "Remove color"
 msgstr "色を減らす"
 
-#: src/editor/index.js:302
+#: src/editor/index.js:315
 msgid "Effect details"
 msgstr "エフェクトの詳細"
 
-#: src/editor/index.js:321
+#: src/editor/index.js:334
 msgid "Editor preview"
 msgstr "編集画面のプレビュー"
 
-#: src/editor/index.js:328
+#: src/editor/index.js:341
 msgid "Static"
 msgstr "静止画"
 
-#: src/editor/index.js:335
+#: src/editor/index.js:348
 msgid "Live while selected"
 msgstr "選択中に動かす"
 
-#: src/editor/index.js:342
+#: src/editor/index.js:355
 msgid "Stopped"
 msgstr "停止"
 
-#: src/editor/index.js:352
+#: src/editor/index.js:365
 msgid "Performance"
 msgstr "パフォーマンス"
 
-#: src/editor/index.js:359
+#: src/editor/index.js:372
 msgid "Quality"
 msgstr "描画品質"
 
-#: src/editor/index.js:370
+#: src/editor/index.js:383
 msgid "Mobile quality"
 msgstr "モバイルの描画品質"
 
-#: src/editor/index.js:381
+#: src/editor/index.js:394
 msgid "Maximum FPS"
 msgstr "FPS 上限"
 
-#: src/editor/index.js:393
+#: src/editor/index.js:406
 msgid "Static on published page"
 msgstr "公開画面で静止表示する"
 
-#: src/editor/index.js:405
+#: src/editor/index.js:418
 msgid "Fallback background"
 msgstr "フォールバック背景色"
 
-#: src/editor/index.js:426
+#: src/editor/index.js:439
 msgid "Check text contrast. Reduced motion uses the fallback color."
 msgstr "文字の読みやすさを確認してください。動きを減らす設定ではフォールバック背景色を表示します。"
 
-#: src/editor/index.js:433
+#: src/editor/index.js:446
 msgid "Cover media is hidden while WebGL is enabled. Its settings are preserved."
 msgstr "WebGL が有効な間はカバーの画像・動画を非表示にします。メディアの設定は保持されます。"
 
@@ -218,66 +218,110 @@ msgstr "Koji Kuno"
 msgid "https://olein-design.com"
 msgstr ""
 
-#: src/effects/labels.js:4
+#: src/effects/labels.js:13
 msgid "Animated Grid"
 msgstr "アニメーショングリッド"
 
-#: src/effects/labels.js:5
+#: src/effects/labels.js:14
 msgid "Aurora"
 msgstr ""
 
-#: src/effects/labels.js:6
+#: src/effects/labels.js:15
 msgid "Blend softness"
 msgstr "混ざりの減衰"
 
-#: src/effects/labels.js:7
+#: src/effects/labels.js:16
 msgid "Color spread"
 msgstr "色の配置範囲"
 
-#: src/effects/labels.js:8
+#: src/effects/labels.js:17
 msgid "Decay"
 msgstr "減衰"
 
-#: src/effects/labels.js:11
+#: src/effects/labels.js:20
 msgid "Fluid Gradient"
 msgstr ""
 
-#: src/effects/labels.js:12
+#: src/effects/labels.js:21
 msgid "Forest"
 msgstr ""
 
-#: src/effects/labels.js:15
+#: src/effects/labels.js:24
 msgid "Grid spacing"
 msgstr "グリッド数"
 
-#: src/effects/labels.js:17
+#: src/effects/labels.js:26
 msgid "Mesh Gradient"
 msgstr "メッシュグラデーション"
 
-#: src/effects/labels.js:19
+#: src/effects/labels.js:28
 msgid "Noise Field"
 msgstr "ノイズフィールド"
 
-#: src/effects/labels.js:21
+#: src/effects/labels.js:30
 msgid "Ripple"
 msgstr "波紋"
 
-#: src/effects/labels.js:22
+#: src/effects/labels.js:31
 msgid "Ripple spread"
 msgstr "波紋の広がり"
 
-#: src/effects/labels.js:24
+#: src/effects/labels.js:33
 msgid "Soft Blue"
 msgstr ""
 
-#: src/effects/labels.js:25
+#: src/effects/labels.js:34
 msgid "Warm"
 msgstr ""
 
-#: src/effects/labels.js:26
+#: src/effects/labels.js:35
 msgid "Warp"
 msgstr "変形"
 
-#: src/effects/labels.js:28
+#: src/effects/labels.js:37
 msgid "Waves"
 msgstr ""
+
+#: src/editor/index.js:161
+msgid "Particles"
+msgstr "パーティクル"
+
+#: src/editor/index.js:168
+msgid "Fluid & Gradient"
+msgstr "流体・グラデーション"
+
+#: src/editor/index.js:175
+msgid "Waves & Geometry"
+msgstr "波・幾何学"
+
+#: src/effects/labels.js:3
+msgid "Floating Particles"
+msgstr "浮遊パーティクル"
+
+#: src/effects/labels.js:4
+msgid "Particle Connections"
+msgstr "粒子の接続"
+
+#: src/effects/labels.js:5
+msgid "Flow Field"
+msgstr "フローフィールド"
+
+#: src/effects/labels.js:6
+msgid "Stars"
+msgstr "星空"
+
+#: src/effects/labels.js:7
+msgid "Particle count"
+msgstr "粒子数"
+
+#: src/effects/labels.js:8
+msgid "Particle size"
+msgstr "粒子サイズ"
+
+#: src/effects/labels.js:9
+msgid "Drift"
+msgstr "漂流の強さ"
+
+#: src/effects/labels.js:10
+msgid "Connection distance"
+msgstr "接続距離"

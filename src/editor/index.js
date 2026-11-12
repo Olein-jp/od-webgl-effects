@@ -158,11 +158,24 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 								value={ effect.category }
 								options={ [
 									{
-										label: 'Fluid & Gradient',
+										label: __(
+											'Particles',
+											'od-webgl-effects'
+										),
+										value: 'particles',
+									},
+									{
+										label: __(
+											'Fluid & Gradient',
+											'od-webgl-effects'
+										),
 										value: 'fluid',
 									},
 									{
-										label: 'Waves & Geometry',
+										label: __(
+											'Waves & Geometry',
+											'od-webgl-effects'
+										),
 										value: 'geometry',
 									},
 								] }

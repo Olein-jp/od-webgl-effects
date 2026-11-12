@@ -514,5 +514,385 @@
         }
       }
     ]
+  },
+  "floating-particles": {
+    "label": "Floating Particles",
+    "category": "particles",
+    "description": "Floating Particles background",
+    "defaults": {
+      "speed": 0.4,
+      "intensity": 0.7,
+      "opacity": 1,
+      "density": 80,
+      "size": 3,
+      "drift": 1
+    },
+    "controls": [
+      {
+        "id": "density",
+        "label": "Particle count",
+        "type": "range",
+        "min": 1,
+        "max": 500,
+        "step": 1
+      },
+      {
+        "id": "size",
+        "label": "Particle size",
+        "type": "range",
+        "min": 1,
+        "max": 12,
+        "step": 0.5
+      },
+      {
+        "id": "drift",
+        "label": "Drift",
+        "type": "range",
+        "min": 0,
+        "max": 3,
+        "step": 0.01
+      }
+    ],
+    "presets": [
+      {
+        "id": "soft-blue",
+        "label": "Soft Blue",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 80,
+          "size": 3,
+          "drift": 1,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#97d6f7"
+          ]
+        }
+      },
+      {
+        "id": "warm",
+        "label": "Warm",
+        "settings": {
+          "speed": 0.15,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 30,
+          "size": 5,
+          "drift": 1,
+          "colors": [
+            "#41295a",
+            "#f59d64",
+            "#ffd976"
+          ]
+        }
+      },
+      {
+        "id": "forest",
+        "label": "Forest",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 100,
+          "size": 2,
+          "drift": 1,
+          "colors": [
+            "#092e28",
+            "#36ac82",
+            "#c4e8ae"
+          ]
+        }
+      }
+    ]
+  },
+  "particle-connections": {
+    "label": "Particle Connections",
+    "category": "particles",
+    "description": "Particle Connections background",
+    "defaults": {
+      "speed": 0.4,
+      "intensity": 0.7,
+      "opacity": 1,
+      "density": 80,
+      "size": 3,
+      "drift": 1,
+      "distance": 0.3
+    },
+    "controls": [
+      {
+        "id": "density",
+        "label": "Particle count",
+        "type": "range",
+        "min": 1,
+        "max": 500,
+        "step": 1
+      },
+      {
+        "id": "size",
+        "label": "Particle size",
+        "type": "range",
+        "min": 1,
+        "max": 12,
+        "step": 0.5
+      },
+      {
+        "id": "drift",
+        "label": "Drift",
+        "type": "range",
+        "min": 0,
+        "max": 3,
+        "step": 0.01
+      },
+      {
+        "id": "distance",
+        "label": "Connection distance",
+        "type": "range",
+        "min": 0.02,
+        "max": 0.6,
+        "step": 0.01
+      }
+    ],
+    "presets": [
+      {
+        "id": "soft-blue",
+        "label": "Soft Blue",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 80,
+          "size": 3,
+          "drift": 1,
+          "distance": 0.3,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#97d6f7"
+          ]
+        }
+      },
+      {
+        "id": "warm",
+        "label": "Warm",
+        "settings": {
+          "speed": 0.15,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 30,
+          "size": 5,
+          "drift": 1,
+          "distance": 0.3,
+          "colors": [
+            "#41295a",
+            "#f59d64",
+            "#ffd976"
+          ]
+        }
+      },
+      {
+        "id": "forest",
+        "label": "Forest",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 100,
+          "size": 2,
+          "drift": 1,
+          "distance": 0.3,
+          "colors": [
+            "#092e28",
+            "#36ac82",
+            "#c4e8ae"
+          ]
+        }
+      }
+    ]
+  },
+  "flow-field": {
+    "label": "Flow Field",
+    "category": "particles",
+    "description": "Flow Field background",
+    "defaults": {
+      "speed": 0.4,
+      "intensity": 0.7,
+      "opacity": 1,
+      "density": 80,
+      "size": 3,
+      "drift": 1
+    },
+    "controls": [
+      {
+        "id": "density",
+        "label": "Particle count",
+        "type": "range",
+        "min": 1,
+        "max": 500,
+        "step": 1
+      },
+      {
+        "id": "size",
+        "label": "Particle size",
+        "type": "range",
+        "min": 1,
+        "max": 12,
+        "step": 0.5
+      },
+      {
+        "id": "drift",
+        "label": "Drift",
+        "type": "range",
+        "min": 0,
+        "max": 3,
+        "step": 0.01
+      }
+    ],
+    "presets": [
+      {
+        "id": "soft-blue",
+        "label": "Soft Blue",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 80,
+          "size": 3,
+          "drift": 1,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#97d6f7"
+          ]
+        }
+      },
+      {
+        "id": "warm",
+        "label": "Warm",
+        "settings": {
+          "speed": 0.15,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 30,
+          "size": 5,
+          "drift": 1,
+          "colors": [
+            "#41295a",
+            "#f59d64",
+            "#ffd976"
+          ]
+        }
+      },
+      {
+        "id": "forest",
+        "label": "Forest",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 100,
+          "size": 2,
+          "drift": 1,
+          "colors": [
+            "#092e28",
+            "#36ac82",
+            "#c4e8ae"
+          ]
+        }
+      }
+    ]
+  },
+  "stars": {
+    "label": "Stars",
+    "category": "particles",
+    "description": "Stars background",
+    "defaults": {
+      "speed": 0.4,
+      "intensity": 0.7,
+      "opacity": 1,
+      "density": 80,
+      "size": 3,
+      "drift": 1
+    },
+    "controls": [
+      {
+        "id": "density",
+        "label": "Particle count",
+        "type": "range",
+        "min": 1,
+        "max": 500,
+        "step": 1
+      },
+      {
+        "id": "size",
+        "label": "Particle size",
+        "type": "range",
+        "min": 1,
+        "max": 12,
+        "step": 0.5
+      },
+      {
+        "id": "drift",
+        "label": "Drift",
+        "type": "range",
+        "min": 0,
+        "max": 3,
+        "step": 0.01
+      }
+    ],
+    "presets": [
+      {
+        "id": "soft-blue",
+        "label": "Soft Blue",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 80,
+          "size": 3,
+          "drift": 1,
+          "colors": [
+            "#01273e",
+            "#074073",
+            "#97d6f7"
+          ]
+        }
+      },
+      {
+        "id": "warm",
+        "label": "Warm",
+        "settings": {
+          "speed": 0.15,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 30,
+          "size": 5,
+          "drift": 1,
+          "colors": [
+            "#41295a",
+            "#f59d64",
+            "#ffd976"
+          ]
+        }
+      },
+      {
+        "id": "forest",
+        "label": "Forest",
+        "settings": {
+          "speed": 0.4,
+          "intensity": 0.7,
+          "opacity": 1,
+          "density": 100,
+          "size": 2,
+          "drift": 1,
+          "colors": [
+            "#092e28",
+            "#36ac82",
+            "#c4e8ae"
+          ]
+        }
+      }
+    ]
   }
 }

@@ -15,3 +15,11 @@
 各モジュールは表示時に個別取得。静止時刻0で再現可能なため、編集画面と公開画面の比較に使用できる。サムネイルは静止SVGでCanvasを作らない。Mesh / Ripple / Noise / Gridには固有設定を含む3種のプリセットを同梱。ポインター起点のRippleはIssue #7で扱う。
 
 `effects.spec.js`は各追加エフェクトの保存・再編集、3サイズの描画、品質切替、Reduced Motion、WebGL失敗時を検証。Chromiumの固定時刻画像は新規生成後に目視確認し、以降の差分検出に使用する。
+
+## 粒子系（Issue #5）
+
+Floating Particlesは上昇する粒子、Particle Connectionsは近接線、Flow Fieldは周期的な流れ、Starsは低速移動と明滅。粒子数1〜500（実描画は品質上限32/64/128）、サイズ1〜12 CSS px、漂流0〜3、接続距離0.02〜0.6（正規化座標）を指定できる。色パレットの先頭は背景、残りは粒子。速度と強度は移動量に適用。固定シードの解析式で位置を求め、独立RAFやフレームごとの蓄積誤差を持たない。
+
+各粒子は近隣インデックスの最大8候補だけを調べ、品質ごとに最大2/3/4接続を採用する（全組み合わせ探索をしない）。位置バッファは128粒子、線バッファは128×4線を上限として再利用する。品質切替で再確保せず、GPUの点・線GeometryとProgramを破棄時に解放する。モバイルは既定Low。静止・Reduced Motion・画面外では共通管理に従って更新を止める。
+
+負荷測定は `PERF_EFFECT=floating-particles,particle-connections,flow-field,stars` を指定して performance.spec.js を実行する。実機GPUの保証値ではなく、ローカルの回帰用測定。
