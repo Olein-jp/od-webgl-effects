@@ -1,0 +1,22 @@
+{
+  "name": "od-webgl-effects",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": ">=22",
+    "npm": ">=10"
+  },
+  "scripts": {
+    "env:start": "wp-env start",
+    "env:stop": "wp-env stop",
+    "env:status": "wp-env status",
+    "env:logs": "wp-env logs",
+    "env:cli": "wp-env run cli wp",
+    "i18n:pot": "wp-env run cli --env-cwd=wp-content/plugins/od-webgl-effects wp i18n make-pot . languages/od-webgl-effects.pot --domain=od-webgl-effects --exclude=vendor,node_modules,dist",
+    "i18n:mo": "wp-env run cli --env-cwd=wp-content/plugins/od-webgl-effects wp i18n make-mo languages",
+    "package": "python3 scripts/package.py"
+  },
+  "devDependencies": {
+    "@wordpress/env": "10.36.0"
+  }
+}

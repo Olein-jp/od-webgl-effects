@@ -1,0 +1,21 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: OD WebGL Effects 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/Olein-jp/od-webgl-effects/issues\n"
+"PO-Revision-Date: 2026-11-12 12:00+0900\n"
+"Last-Translator: Olein Design\n"
+"Language-Team: Japanese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: od-webgl-effects\n"
+"Language: ja\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: od-webgl-effects.php:5
+msgid "WebGL background effects for WordPress blocks."
+msgstr "WordPress ブロック向けの WebGL 背景エフェクト。"
+
+#: od-webgl-effects.php:88
+msgid "OD WebGL Effects: dependencies are missing. Run composer install or install the ZIP asset from GitHub Releases."
+msgstr "OD WebGL Effects: 依存ライブラリがありません。composer install を実行するか、GitHub Releases に添付された ZIP をインストールしてください。"
