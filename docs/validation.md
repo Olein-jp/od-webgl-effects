@@ -77,6 +77,12 @@ Issue #1 は未完了として扱います。以下のチェックを実行で�
 - JS単体30件、PHP単体32項目、WPCS、Composer定義検証を再実行し成功。既存のIssue #2の変更をコミット対象とし、Issueのクローズ・タグ・Release作成は行わない。
 - 今回はWordPress統合・ブラウザテストを再実行していない。上記の未確認項目は引き続き残る。
 
+### Issue #2 完了確認（2026-11-12）
+
+- `355c6b0` 上でChromium / Firefox / WebKitの機能テスト15件、Chromiumの画像比較14枚が成功。保存・再編集・サーバー出力一致・Undo/Redoを含む。WordPress 7.1.4 / PHP 8.4.8 / SQLiteを使用。
+- [CI run 43164241066](https://github.com/Olein-jp/od-webgl-effects/actions/runs/43164241066) のbuildと、PHP 8.1 / MySQL上のWordPress 6.9・latestのintegrationがすべて成功。Issue #2の受け入れ条件を確認した。
+- Issue #1の製品版ブラウザ・実機・低性能GPU・Release経由の実更新は未確認のまま。後続実装を進めても、リリース判定の前提として残す。
+
 ### 引き続き残る制限
 
 - PHP 8.1 の実行確認と、MySQL／Docker 上での統合確認はローカルでは未実施。CI に PHP 8.1 と WordPress 6.9／最新版の wp-env 検証ジョブを追加しましたが、リモート Actions はまだ実行していません。
