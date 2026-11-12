@@ -67,7 +67,10 @@ export class Manager {
 			if ( config ) this.mount( root, raw, { live } );
 			return;
 		}
-		if ( e.config.effect !== config.effect ) this.release( e );
+		if ( e.config.effect !== config.effect ) {
+			this.release( e );
+			e.failed = false;
+		}
 		e.config = config;
 		e.live = live;
 		try {
@@ -107,6 +110,8 @@ export class Manager {
 		e.renderer.pause();
 	}
 	release( e ) {
+		e.generation = ( e.generation || 0 ) + 1;
+		e.loading = false;
 		if ( e.canvas ) {
 			e.canvas.removeEventListener( 'webglcontextlost', e.onLost );
 			e.canvas.removeEventListener(
@@ -119,6 +124,72 @@ export class Manager {
 		e.canvas = null;
 		e.active = false;
 		e.last = null;
+	}
+	initialize( e ) {
+		e.loading = true;
+		const generation = e.generation || 0;
+		const effect = effects.get( e.config.effect );
+		// The token is checked before creating a GPU context, not just after loading.
+		Promise.resolve()
+			.then( () =>
+				effect.loadRenderer ? effect.loadRenderer() : null
+			)
+			.then( () => {
+				if (
+					this.entries.get( e.root ) !== e ||
+					( e.generation || 0 ) !== generation ||
+					! e.loading
+				)
+					return;
+				return effect.createRenderer(
+					e.layer,
+					effect,
+					e.config.settings
+				);
+			} )
+			.then( ( renderer ) => {
+				if ( ! renderer ) return;
+				if (
+					this.entries.get( e.root ) !== e ||
+					( e.generation || 0 ) !== generation ||
+					! e.loading
+				) {
+					renderer.destroy();
+					return;
+				}
+				e.renderer = renderer;
+				checkLifecycle( renderer );
+				e.loading = false;
+				e.canvas = e.layer.querySelector( 'canvas' );
+				e.onLost = ( event ) => {
+					event.preventDefault();
+					e.lost = true;
+					e.active = false;
+					e.renderer?.pause();
+				};
+				e.onRestored = () => {
+					this.release( e );
+					e.lost = false;
+					this.sync();
+				};
+				e.canvas?.addEventListener( 'webglcontextlost', e.onLost );
+				e.canvas?.addEventListener(
+					'webglcontextrestored',
+					e.onRestored
+				);
+				this.resize( e );
+				this.sync();
+			} )
+			.catch( () => {
+				if (
+					this.entries.get( e.root ) !== e ||
+					( e.generation || 0 ) !== generation
+				)
+					return;
+				this.release( e );
+				e.failed = true;
+				this.sync();
+			} );
 	}
 	sync() {
 		let used = 0;
@@ -136,38 +207,8 @@ export class Manager {
 			}
 			used++;
 			if ( ! e.renderer ) {
-				try {
-					const effect = effects.get( e.config.effect );
-					e.renderer = checkLifecycle(
-						effect.createRenderer(
-							e.layer,
-							effect,
-							e.config.settings
-						)
-					);
-					e.canvas = e.layer.querySelector( 'canvas' );
-					e.onLost = ( event ) => {
-						event.preventDefault();
-						e.lost = true;
-						e.active = false;
-						e.renderer?.pause();
-					};
-					e.onRestored = () => {
-						this.release( e );
-						e.lost = false;
-						this.sync();
-					};
-					e.canvas?.addEventListener( 'webglcontextlost', e.onLost );
-					e.canvas?.addEventListener(
-						'webglcontextrestored',
-						e.onRestored
-					);
-					this.resize( e );
-				} catch {
-					this.release( e );
-					e.failed = true;
-					continue;
-				}
+				if ( ! e.loading ) this.initialize( e );
+				continue;
 			}
 			e.active =
 				e.live &&

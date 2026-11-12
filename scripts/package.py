@@ -30,6 +30,12 @@ if names.intersection({"wp-coding-standards/wpcs", "squizlabs/php_codesniffer", 
 for required in ("build/editor.js", "build/editor.asset.php", "build/frontend.js", "build/frontend.asset.php", "assets/background.css", "schemas/effects.json", "schemas/common.json"):
     if not (ROOT / required).is_file():
         sys.exit(f"Missing build asset: {required}. Run npm run build")
+manifest = ROOT / "build/chunks.json"
+if not manifest.is_file():
+    sys.exit("Missing chunk manifest: run npm run build")
+for chunk in json.loads(manifest.read_text()):
+    if not (ROOT / "build" / chunk).is_file():
+        sys.exit(f"Missing dynamic chunk: {chunk}")
 files = [entry, ROOT / "LICENSE", ROOT / "readme.txt", ROOT / "README.md", ROOT / "THIRD_PARTY_LICENSES.txt"]
 for directory in ("vendor", "languages", "includes", "build", "assets", "schemas"):
     base = ROOT / directory

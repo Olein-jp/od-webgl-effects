@@ -1,12 +1,16 @@
 import { RendererRegistry, EffectRegistry } from './registry';
 import { definitions } from './settings';
-import { fragments } from './shaders';
-import { OGLRenderer } from '../engine/OGLRenderer';
+import { loadEffect } from './loader';
+const loaded = new Map();
 export const renderers = new RendererRegistry();
 renderers.register(
 	'ogl',
 	( element, effect, settings ) =>
-		new OGLRenderer( element, effect, settings )
+		new ( loaded.get( effect.id ).OGLRenderer )(
+			element,
+			{ ...effect, fragment: loaded.get( effect.id ).fragment },
+			settings
+		)
 );
 export const effects = new EffectRegistry( renderers );
 for ( const [ id, def ] of Object.entries( definitions ) ) {
@@ -17,7 +21,8 @@ for ( const [ id, def ] of Object.entries( definitions ) ) {
 		version: 1,
 		description: def.label,
 		thumbnail: id + '.svg',
-		fragment: fragments[ id ],
+		loadRenderer: () =>
+			loadEffect( id ).then( ( module ) => loaded.set( id, module ) ),
 		createRenderer: ( ...args ) => renderers.get( 'ogl' )( ...args ),
 		presets: [
 			{
