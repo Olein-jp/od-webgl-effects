@@ -1,3 +1,4 @@
+import { PointerInput } from './pointer';
 import { AutoQuality, budgets, requestedQuality, allocation } from './quality';
 import { effects } from '../effects';
 import { normalize } from '../effects/settings';
@@ -118,6 +119,8 @@ export class Manager {
 				e.onRestored
 			);
 		}
+		e.pointer?.destroy();
+		e.pointer = null;
 		e.renderer?.destroy();
 		e.renderer = null;
 		e.canvas = null;
@@ -219,6 +222,20 @@ export class Manager {
 				this.fixedTime === undefined;
 			e.last = null;
 			if ( ! e.active ) e.auto.reset();
+			if ( e.active && e.config.settings.interactive === true ) {
+				if ( ! e.pointer ) {
+					e.pointer = new PointerInput( e.root );
+					e.pointerSequence = 0;
+					e.pointerTime = 0;
+				}
+			} else {
+				e.pointer?.destroy();
+				e.pointer = null;
+				e.renderer.setPointer?.(
+					{ x: 0.5, y: 0.5, active: false, down: false },
+					0
+				);
+			}
 			if ( e.active ) e.renderer.resume();
 			else e.renderer.pause();
 		}
@@ -254,6 +271,17 @@ export class Manager {
 					e.time += Math.min( 0.1, ( now - e.last ) / 1000 );
 				e.last = now;
 				try {
+					if ( e.pointer ) {
+						const input = e.pointer.sample();
+						if (
+							input.sequence > 0 &&
+							input.sequence !== e.pointerSequence
+						) {
+							e.pointerSequence = input.sequence;
+							e.pointerTime = e.time;
+						}
+						e.renderer.setPointer?.( input, e.pointerTime || 0 );
+					}
 					const started = this.win.performance.now();
 					e.renderer.update( e.time );
 					e.renderCost = this.win.performance.now() - started;

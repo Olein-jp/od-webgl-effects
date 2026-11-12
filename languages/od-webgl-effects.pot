@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-12T06:12:57+00:00\n"
+"POT-Creation-Date: 2026-11-12T06:17:03+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: od-webgl-effects\n"
@@ -56,297 +56,305 @@ msgid "Opacity"
 msgstr ""
 
 #: src/editor/controls.js:13
-#: src/effects/labels.js:29
+#: src/effects/labels.js:31
 msgid "Noise scale"
 msgstr ""
 
 #: src/editor/controls.js:14
-#: src/effects/labels.js:23
+#: src/effects/labels.js:25
 msgid "Glow"
 msgstr ""
 
 #: src/editor/controls.js:15
-#: src/effects/labels.js:18
+#: src/effects/labels.js:20
 msgid "Direction"
 msgstr ""
 
 #: src/editor/controls.js:16
-#: src/effects/labels.js:32
+#: src/effects/labels.js:34
 msgid "Scale"
 msgstr ""
 
 #: src/editor/controls.js:17
-#: src/effects/labels.js:19
+#: src/effects/labels.js:21
 msgid "Distortion"
 msgstr ""
 
 #: src/editor/controls.js:18
-#: src/effects/labels.js:27
+#: src/effects/labels.js:29
 msgid "Mix"
 msgstr ""
 
 #: src/editor/controls.js:19
-#: src/effects/labels.js:12
+#: src/effects/labels.js:14
 msgid "Amplitude"
 msgstr ""
 
 #: src/editor/controls.js:20
-#: src/effects/labels.js:22
+#: src/effects/labels.js:24
 msgid "Frequency"
 msgstr ""
 
 #: src/editor/controls.js:21
-#: src/effects/labels.js:36
+#: src/effects/labels.js:38
 msgid "Wave count"
 msgstr ""
 
 #: src/editor/controls.js:22
-#: src/effects/labels.js:25
+#: src/effects/labels.js:27
 msgid "Line thickness"
 msgstr ""
 
-#: src/editor/index.js:93
+#: src/editor/index.js:94
 msgid "Fluid & Gradient"
 msgstr ""
 
-#: src/editor/index.js:94
+#: src/editor/index.js:95
 msgid "Waves & Geometry"
 msgstr ""
 
-#: src/editor/index.js:95
+#: src/editor/index.js:96
 msgid "Particles"
 msgstr ""
 
-#: src/editor/index.js:127
+#: src/editor/index.js:133
 msgid "Auto"
 msgstr ""
 
-#: src/editor/index.js:128
+#: src/editor/index.js:134
 msgid "Low"
 msgstr ""
 
-#: src/editor/index.js:129
+#: src/editor/index.js:135
 msgid "Medium"
 msgstr ""
 
-#: src/editor/index.js:130
+#: src/editor/index.js:136
 msgid "High"
 msgstr ""
 
-#: src/editor/index.js:141
+#: src/editor/index.js:147
 msgid "WebGL background"
 msgstr ""
 
-#: src/editor/index.js:146
+#: src/editor/index.js:152
 msgid "Enable WebGL background"
 msgstr ""
 
-#: src/editor/index.js:155
+#: src/editor/index.js:161
 msgid "Unsupported settings. Reset to edit safely."
 msgstr ""
 
-#: src/editor/index.js:165
+#: src/editor/index.js:169
 msgid "Reset"
 msgstr ""
 
-#: src/editor/index.js:172
+#: src/editor/index.js:176
 msgid "Category"
 msgstr ""
 
-#: src/editor/index.js:195
+#: src/editor/index.js:199
 msgid "Effect"
 msgstr ""
 
-#: src/editor/index.js:211
+#: src/editor/index.js:215
 msgid "Effect thumbnails"
 msgstr ""
 
-#: src/editor/index.js:247
+#: src/editor/index.js:251
 msgid "Preset"
 msgstr ""
 
-#: src/editor/index.js:251
+#: src/editor/index.js:255
 msgid "Custom"
 msgstr ""
 
-#: src/editor/index.js:280
+#: src/editor/index.js:284
 msgid "Preset name"
 msgstr ""
 
-#: src/editor/index.js:286
+#: src/editor/index.js:290
 msgid "Saved in this block. Up to 10 presets."
 msgstr ""
 
-#: src/editor/index.js:309
+#: src/editor/index.js:313
 msgid "Save block preset"
 msgstr ""
 
-#: src/editor/index.js:330
+#: src/editor/index.js:334
 msgid "Delete block preset"
 msgstr ""
 
-#: src/editor/index.js:350
+#: src/editor/index.js:354
 msgid "Reset effect settings"
 msgstr ""
 
 #. translators: %d: color position in the effect palette.
-#: src/editor/index.js:360
+#: src/editor/index.js:364
 #, js-format
 msgid "Color %d"
 msgstr ""
 
-#: src/editor/index.js:400
+#: src/editor/index.js:404
 msgid "Add color"
 msgstr ""
 
-#: src/editor/index.js:414
+#: src/editor/index.js:418
 msgid "Remove color"
 msgstr ""
 
-#: src/editor/index.js:429
+#: src/editor/index.js:433
 msgid "Effect details"
 msgstr ""
 
-#: src/editor/index.js:448
+#: src/editor/index.js:461
 msgid "Editor preview"
 msgstr ""
 
-#: src/editor/index.js:455
+#: src/editor/index.js:468
 msgid "Static"
 msgstr ""
 
-#: src/editor/index.js:462
+#: src/editor/index.js:475
 msgid "Live while selected"
 msgstr ""
 
-#: src/editor/index.js:469
+#: src/editor/index.js:482
 msgid "Stopped"
 msgstr ""
 
-#: src/editor/index.js:479
+#: src/editor/index.js:492
 msgid "Performance"
 msgstr ""
 
-#: src/editor/index.js:486
+#: src/editor/index.js:499
 msgid "Quality"
 msgstr ""
 
-#: src/editor/index.js:497
+#: src/editor/index.js:510
 msgid "Mobile quality"
 msgstr ""
 
-#: src/editor/index.js:508
+#: src/editor/index.js:521
 msgid "Maximum FPS"
 msgstr ""
 
-#: src/editor/index.js:520
+#: src/editor/index.js:533
 msgid "Static on published page"
 msgstr ""
 
-#: src/editor/index.js:532
+#: src/editor/index.js:545
 msgid "Fallback background"
 msgstr ""
 
-#: src/editor/index.js:553
+#: src/editor/index.js:566
 msgid "Check text contrast. Reduced motion uses the fallback color."
 msgstr ""
 
-#: src/editor/index.js:560
+#: src/editor/index.js:573
 msgid "Cover media is hidden while WebGL is enabled. Its settings are preserved."
 msgstr ""
 
 #: src/effects/labels.js:3
-msgid "Floating Particles"
+msgid "Pointer interaction"
 msgstr ""
 
 #: src/effects/labels.js:4
-msgid "Particle Connections"
+msgid "Interaction strength"
 msgstr ""
 
 #: src/effects/labels.js:5
-msgid "Flow Field"
+msgid "Floating Particles"
 msgstr ""
 
 #: src/effects/labels.js:6
-msgid "Stars"
+msgid "Particle Connections"
 msgstr ""
 
 #: src/effects/labels.js:7
-msgid "Particle count"
+msgid "Flow Field"
 msgstr ""
 
 #: src/effects/labels.js:8
-msgid "Particle size"
+msgid "Stars"
 msgstr ""
 
 #: src/effects/labels.js:9
-msgid "Drift"
+msgid "Particle count"
 msgstr ""
 
 #: src/effects/labels.js:10
+msgid "Particle size"
+msgstr ""
+
+#: src/effects/labels.js:11
+msgid "Drift"
+msgstr ""
+
+#: src/effects/labels.js:12
 msgid "Connection distance"
 msgstr ""
 
-#: src/effects/labels.js:13
+#: src/effects/labels.js:15
 msgid "Animated Grid"
 msgstr ""
 
-#: src/effects/labels.js:14
+#: src/effects/labels.js:16
 msgid "Aurora"
 msgstr ""
 
-#: src/effects/labels.js:15
+#: src/effects/labels.js:17
 msgid "Blend softness"
 msgstr ""
 
-#: src/effects/labels.js:16
+#: src/effects/labels.js:18
 msgid "Color spread"
 msgstr ""
 
-#: src/effects/labels.js:17
+#: src/effects/labels.js:19
 msgid "Decay"
 msgstr ""
 
-#: src/effects/labels.js:20
+#: src/effects/labels.js:22
 msgid "Fluid Gradient"
 msgstr ""
 
-#: src/effects/labels.js:21
+#: src/effects/labels.js:23
 msgid "Forest"
 msgstr ""
 
-#: src/effects/labels.js:24
+#: src/effects/labels.js:26
 msgid "Grid spacing"
 msgstr ""
 
-#: src/effects/labels.js:26
+#: src/effects/labels.js:28
 msgid "Mesh Gradient"
 msgstr ""
 
-#: src/effects/labels.js:28
+#: src/effects/labels.js:30
 msgid "Noise Field"
 msgstr ""
 
-#: src/effects/labels.js:30
+#: src/effects/labels.js:32
 msgid "Ripple"
 msgstr ""
 
-#: src/effects/labels.js:31
+#: src/effects/labels.js:33
 msgid "Ripple spread"
 msgstr ""
 
-#: src/effects/labels.js:33
+#: src/effects/labels.js:35
 msgid "Soft Blue"
 msgstr ""
 
-#: src/effects/labels.js:34
+#: src/effects/labels.js:36
 msgid "Warm"
 msgstr ""
 
-#: src/effects/labels.js:35
+#: src/effects/labels.js:37
 msgid "Warp"
 msgstr ""
 
-#: src/effects/labels.js:37
+#: src/effects/labels.js:39
 msgid "Waves"
 msgstr ""

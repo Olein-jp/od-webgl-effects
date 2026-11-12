@@ -125,6 +125,18 @@ export class ParticleRenderer extends OGLRenderer {
 				),
 				i * 2
 			);
+		if ( this.settings.interactive && this.pointer?.active ) {
+			for ( let i = 0; i < count; i++ ) {
+				this.positions[ i * 2 ] +=
+					( this.pointer.x - this.positions[ i * 2 ] ) *
+					0.25 *
+					this.settings.interactionStrength;
+				this.positions[ i * 2 + 1 ] +=
+					( this.pointer.y - this.positions[ i * 2 + 1 ] ) *
+					0.25 *
+					this.settings.interactionStrength;
+			}
+		}
 		this.pointGeometry.attributes.position.needsUpdate = true;
 		this.pointGeometry.setDrawRange( 0, count );
 		this.pointProgram.uniforms.uTime.value = time * this.settings.speed;

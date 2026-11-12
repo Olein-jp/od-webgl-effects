@@ -1,5 +1,5 @@
 const mockRenderers = [];
-jest.mock('../../src/effects', () => ({ effects: { get: (id) => id === 'aurora' ? { id, defaults: { speed: 1, opacity: 1 }, controls: [], createRenderer(element) {
+jest.mock('../../src/effects', () => ({ effects: { get: (id) => id === 'aurora' ? { id, defaults: { speed: 1, opacity: 1, interactive: false, interactionStrength:.5 }, controls: [{id:"interactive",type:"toggle"},{id:"interactionStrength",type:"range",min:0,max:1}], createRenderer(element) {
 	const renderer = { update: jest.fn(), resize: jest.fn(), setSettings: jest.fn(), pause: jest.fn(), resume: jest.fn(), destroy: jest.fn() };
 	mockRenderers.push(renderer); return renderer;
 } } : null } }));
@@ -59,4 +59,12 @@ test('hidden tabs release resources, visible tabs resume, and FPS is bounded', a
 test('removed blocks never create a renderer when the module resolves', async () => {
  const root = mount(); intersection([{target:root,isIntersecting:true}]); manager.remove(root); await flush();
  expect(mockRenderers).toHaveLength(0);
+});
+
+test('pointer listeners exist only for eligible live interactive entries',async()=>{
+ const root=mount();intersection([{target:root,isIntersecting:true}]);await flush();
+ manager.update(root,{enabled:true,effect:'aurora',settings:{interactive:true}},true);expect(manager.entries.get(root).pointer).toBeTruthy();
+ const pointer=manager.entries.get(root).pointer;const destroy=jest.spyOn(pointer,'destroy');
+ manager.update(root,{enabled:true,effect:'aurora',settings:{interactive:true}},false);expect(destroy).toHaveBeenCalled();expect(manager.entries.get(root).pointer).toBeNull();
+ manager.update(root,{enabled:true,effect:'aurora',settings:{interactive:false}},true);expect(manager.entries.get(root).pointer).toBeNull();
 });

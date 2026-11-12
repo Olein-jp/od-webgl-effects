@@ -436,17 +436,26 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 								) }
 								initialOpen={ false }
 							>
-								{ effect.controls.map( ( control ) => (
-									<Control
-										key={ control.id }
-										control={ control }
-										value={ state.settings[ control.id ] }
-										onChange={ ( value ) =>
-											setting( control.id, value )
-										}
-										colors={ colors }
-									/>
-								) ) }
+								{ effect.controls
+									.filter(
+										( c ) =>
+											! c.dependsOn ||
+											state.settings[ c.dependsOn ] ===
+												true
+									)
+									.map( ( control ) => (
+										<Control
+											key={ control.id }
+											control={ control }
+											value={
+												state.settings[ control.id ]
+											}
+											onChange={ ( value ) =>
+												setting( control.id, value )
+											}
+											colors={ colors }
+										/>
+									) ) }
 							</PanelBody>
 							<SelectControl
 								label={ __(

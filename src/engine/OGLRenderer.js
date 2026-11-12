@@ -61,6 +61,9 @@ export class OGLRenderer {
 			] )
 				this.uniforms[ 'u' + key ] = { value: 0 };
 			this.uniforms.uComplexity = { value: 1 };
+			this.uniforms.uPointer = { value: [ 0.5, 0.5 ] };
+			this.uniforms.uPointerActive = { value: 0 };
+			this.uniforms.uPointerTime = { value: 0 };
 			for ( const [ key, value ] of Object.entries( settings ) ) {
 				if ( typeof value === 'number' )
 					this.uniforms[
@@ -110,6 +113,13 @@ export class OGLRenderer {
 		this.uniforms.uColorCount.value = colors.length;
 		while ( colors.length < 5 ) colors.push( colors.at( -1 ) );
 		this.uniforms.uColors.value = colors.flat();
+	}
+	setPointer( input, time ) {
+		this.pointer = input;
+		this.uniforms.uPointer.value = [ input.x, input.y ];
+		this.uniforms.uPointerActive.value =
+			this.settings.interactive && input.active ? 1 : 0;
+		this.uniforms.uPointerTime.value = time;
 	}
 	setQuality( budget ) {
 		this.uniforms.uComplexity.value = budget.complexity;

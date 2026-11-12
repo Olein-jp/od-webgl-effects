@@ -1,5 +1,7 @@
 import { __ } from '@wordpress/i18n';
 export const labels = {
+	'Pointer interaction': __( 'Pointer interaction', 'od-webgl-effects' ),
+	'Interaction strength': __( 'Interaction strength', 'od-webgl-effects' ),
 	'Floating Particles': __( 'Floating Particles', 'od-webgl-effects' ),
 	'Particle Connections': __( 'Particle Connections', 'od-webgl-effects' ),
 	'Flow Field': __( 'Flow Field', 'od-webgl-effects' ),
