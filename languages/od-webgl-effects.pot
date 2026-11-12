@@ -1,4 +1,4 @@
-# Copyright (C) 2026 Olein Design
+# Copyright (C) 2026 Koji Kuno
 # This file is distributed under the GPL-2.0-or-later.
 msgid ""
 msgstr ""
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-11-12T04:12:54+00:00\n"
+"POT-Creation-Date: 2026-11-12T06:04:43+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: od-webgl-effects\n"
@@ -31,12 +31,12 @@ msgstr ""
 
 #. Author of the plugin
 #: od-webgl-effects.php
-msgid "Olein Design"
+msgid "Koji Kuno"
 msgstr ""
 
 #. Author URI of the plugin
 #: od-webgl-effects.php
-msgid "https://olein-design.com/"
+msgid "https://olein-design.com"
 msgstr ""
 
 #: od-webgl-effects.php:88
@@ -56,155 +56,229 @@ msgid "Opacity"
 msgstr ""
 
 #: src/editor/controls.js:13
+#: src/effects/labels.js:20
 msgid "Noise scale"
 msgstr ""
 
 #: src/editor/controls.js:14
+#: src/effects/labels.js:14
 msgid "Glow"
 msgstr ""
 
 #: src/editor/controls.js:15
+#: src/effects/labels.js:9
 msgid "Direction"
 msgstr ""
 
 #: src/editor/controls.js:16
+#: src/effects/labels.js:23
 msgid "Scale"
 msgstr ""
 
 #: src/editor/controls.js:17
+#: src/effects/labels.js:10
 msgid "Distortion"
 msgstr ""
 
 #: src/editor/controls.js:18
+#: src/effects/labels.js:18
 msgid "Mix"
 msgstr ""
 
 #: src/editor/controls.js:19
+#: src/effects/labels.js:3
 msgid "Amplitude"
 msgstr ""
 
 #: src/editor/controls.js:20
+#: src/effects/labels.js:13
 msgid "Frequency"
 msgstr ""
 
 #: src/editor/controls.js:21
+#: src/effects/labels.js:27
 msgid "Wave count"
 msgstr ""
 
 #: src/editor/controls.js:22
+#: src/effects/labels.js:16
 msgid "Line thickness"
 msgstr ""
 
-#: src/editor/index.js:115
+#: src/editor/index.js:112
 msgid "Auto"
 msgstr ""
 
-#: src/editor/index.js:116
+#: src/editor/index.js:113
 msgid "Low"
 msgstr ""
 
-#: src/editor/index.js:117
+#: src/editor/index.js:114
 msgid "Medium"
 msgstr ""
 
-#: src/editor/index.js:118
+#: src/editor/index.js:115
 msgid "High"
 msgstr ""
 
-#: src/editor/index.js:129
+#: src/editor/index.js:126
 msgid "WebGL background"
 msgstr ""
 
-#: src/editor/index.js:134
+#: src/editor/index.js:131
 msgid "Enable WebGL background"
 msgstr ""
 
-#: src/editor/index.js:143
+#: src/editor/index.js:140
 msgid "Unsupported settings. Reset to edit safely."
 msgstr ""
 
-#: src/editor/index.js:153
+#: src/editor/index.js:150
 msgid "Reset"
 msgstr ""
 
-#: src/editor/index.js:160
+#: src/editor/index.js:157
 msgid "Category"
 msgstr ""
 
-#: src/editor/index.js:183
+#: src/editor/index.js:180
 msgid "Effect"
 msgstr ""
 
-#: src/editor/index.js:202
+#: src/editor/index.js:199
 msgid "Preset"
 msgstr ""
 
-#: src/editor/index.js:206
+#: src/editor/index.js:203
 msgid "Custom"
 msgstr ""
 
 #. translators: %d: color position in the effect palette.
-#: src/editor/index.js:236
+#: src/editor/index.js:233
 #, js-format
 msgid "Color %d"
 msgstr ""
 
-#: src/editor/index.js:276
+#: src/editor/index.js:273
 msgid "Add color"
 msgstr ""
 
-#: src/editor/index.js:290
+#: src/editor/index.js:287
 msgid "Remove color"
 msgstr ""
 
-#: src/editor/index.js:305
+#: src/editor/index.js:302
 msgid "Effect details"
 msgstr ""
 
-#: src/editor/index.js:324
+#: src/editor/index.js:321
 msgid "Editor preview"
 msgstr ""
 
-#: src/editor/index.js:331
+#: src/editor/index.js:328
 msgid "Static"
 msgstr ""
 
-#: src/editor/index.js:338
+#: src/editor/index.js:335
 msgid "Live while selected"
 msgstr ""
 
-#: src/editor/index.js:345
+#: src/editor/index.js:342
 msgid "Stopped"
 msgstr ""
 
-#: src/editor/index.js:355
+#: src/editor/index.js:352
 msgid "Performance"
 msgstr ""
 
-#: src/editor/index.js:362
+#: src/editor/index.js:359
 msgid "Quality"
 msgstr ""
 
-#: src/editor/index.js:373
+#: src/editor/index.js:370
 msgid "Mobile quality"
 msgstr ""
 
-#: src/editor/index.js:384
+#: src/editor/index.js:381
 msgid "Maximum FPS"
 msgstr ""
 
-#: src/editor/index.js:396
+#: src/editor/index.js:393
 msgid "Static on published page"
 msgstr ""
 
-#: src/editor/index.js:408
+#: src/editor/index.js:405
 msgid "Fallback background"
 msgstr ""
 
-#: src/editor/index.js:429
+#: src/editor/index.js:426
 msgid "Check text contrast. Reduced motion uses the fallback color."
 msgstr ""
 
-#: src/editor/index.js:436
+#: src/editor/index.js:433
 msgid "Cover media is hidden while WebGL is enabled. Its settings are preserved."
+msgstr ""
+
+#: src/effects/labels.js:4
+msgid "Animated Grid"
+msgstr ""
+
+#: src/effects/labels.js:5
+msgid "Aurora"
+msgstr ""
+
+#: src/effects/labels.js:6
+msgid "Blend softness"
+msgstr ""
+
+#: src/effects/labels.js:7
+msgid "Color spread"
+msgstr ""
+
+#: src/effects/labels.js:8
+msgid "Decay"
+msgstr ""
+
+#: src/effects/labels.js:11
+msgid "Fluid Gradient"
+msgstr ""
+
+#: src/effects/labels.js:12
+msgid "Forest"
+msgstr ""
+
+#: src/effects/labels.js:15
+msgid "Grid spacing"
+msgstr ""
+
+#: src/effects/labels.js:17
+msgid "Mesh Gradient"
+msgstr ""
+
+#: src/effects/labels.js:19
+msgid "Noise Field"
+msgstr ""
+
+#: src/effects/labels.js:21
+msgid "Ripple"
+msgstr ""
+
+#: src/effects/labels.js:22
+msgid "Ripple spread"
+msgstr ""
+
+#: src/effects/labels.js:24
+msgid "Soft Blue"
+msgstr ""
+
+#: src/effects/labels.js:25
+msgid "Warm"
+msgstr ""
+
+#: src/effects/labels.js:26
+msgid "Warp"
+msgstr ""
+
+#: src/effects/labels.js:28
+msgid "Waves"
 msgstr ""

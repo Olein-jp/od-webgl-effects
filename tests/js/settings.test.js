@@ -21,7 +21,7 @@ test('registry rejects duplicates, unknown engines and malformed lifecycle', () 
 	expect(() => effects.register({ id: 'aurora' })).toThrow();
 	expect(() => effects.register({ ...definitions.aurora, id: 'custom', renderer: 'missing', createRenderer() {} })).toThrow();
 	expect(() => checkLifecycle({ destroy() {} })).toThrow();
-	effects.unregister('missing'); expect(effects.getAll()).toHaveLength(3);
+	effects.unregister('missing'); expect(effects.getAll()).toHaveLength(Object.keys(definitions).length);
 });
 test('all schema control types validate', () => {
 	const def = { defaults: { choice: 'a', flag: false, label: 'default', color: '#fff' }, controls: [{ id: 'choice', type: 'select', options: [{ value: 'a' }] }, { id: 'flag', type: 'toggle' }, { id: 'label', type: 'text' }, { id: 'color', type: 'color' }] };

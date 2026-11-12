@@ -1,4 +1,5 @@
 import { RendererRegistry, EffectRegistry } from './registry';
+import { labels } from './labels';
 import { definitions } from './settings';
 import { loadEffect } from './loader';
 const loaded = new Map();
@@ -17,6 +18,11 @@ for ( const [ id, def ] of Object.entries( definitions ) ) {
 	effects.register( {
 		...def,
 		id,
+		label: labels[ def.label ] || def.label,
+		controls: def.controls.map( ( control ) => ( {
+			...control,
+			label: labels[ control.label ] || control.label,
+		} ) ),
 		renderer: 'ogl',
 		version: 1,
 		description: def.label,
@@ -24,7 +30,7 @@ for ( const [ id, def ] of Object.entries( definitions ) ) {
 		loadRenderer: () =>
 			loadEffect( id ).then( ( module ) => loaded.set( id, module ) ),
 		createRenderer: ( ...args ) => renderers.get( 'ogl' )( ...args ),
-		presets: [
+		presets: def.presets || [
 			{
 				id: 'soft-blue',
 				label: 'Soft Blue',

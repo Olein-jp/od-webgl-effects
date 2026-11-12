@@ -1,9 +1,13 @@
 [
   "editor.js",
   "frontend.js",
-  "effect-aurora.e46b5bbe.js",
-  "effect-fluid-gradient.01f7c545.js",
-  "effect-waves.74367c1d.js",
-  "engine-ogl.54503785.js",
+  "effect-mesh-gradient.dfb675d8.js",
+  "effect-ripple.d2f0d1dd.js",
+  "effect-noise-field.1264a3ca.js",
+  "effect-animated-grid.2a698e34.js",
+  "effect-aurora.1f650ae5.js",
+  "effect-fluid-gradient.c49df72d.js",
+  "effect-waves.76a1bab6.js",
+  "engine-ogl.f0c08bbf.js",
   "341.6a947d1a.js"
 ]

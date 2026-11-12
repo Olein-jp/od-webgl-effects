@@ -1,4 +1,19 @@
 const modules = {
+	'mesh-gradient': () =>
+		import(
+			/* webpackChunkName: "effect-mesh-gradient" */ './modules/mesh-gradient'
+		),
+	ripple: () =>
+		import( /* webpackChunkName: "effect-ripple" */ './modules/ripple' ),
+	'noise-field': () =>
+		import(
+			/* webpackChunkName: "effect-noise-field" */ './modules/noise-field'
+		),
+	'animated-grid': () =>
+		import(
+			/* webpackChunkName: "effect-animated-grid" */ './modules/animated-grid'
+		),
+
 	aurora: () =>
 		import( /* webpackChunkName: "effect-aurora" */ './modules/aurora' ),
 	'fluid-gradient': () =>
