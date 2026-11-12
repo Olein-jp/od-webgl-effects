@@ -7,9 +7,9 @@
 - 対象コミット: `e8489a02bbc8f7b24ae4968ddf0b8aba96fc9a3e`
 - ZIP内バージョン: `0.1.0`
 - ZIP SHA-256: `6bfb706a9c73b766bdc7d64231fd5d735b85405bf879ffb31bbb0e12a74adeea`
-- [未公開ドラフト](https://github.com/Olein-jp/od-webgl-effects/releases/tag/untagged-3b5be5bd9d30cea1c511)
+- [公開済み検証用Prerelease](https://github.com/Olein-jp/od-webgl-effects/releases/tag/validation-update-20261112)
 
-公開操作はユーザー確認待ち。公開する場合もPrereleaseかつLatest対象外とし、一般利用者向けの安定版にはしない。実機未確認という元の完了条件は維持する。
+ユーザーの明示許可を受け、PrereleaseかつLatest対象外で公開済み。GitHubのLatest APIは404で、安定版Releaseは作成していない。実機未確認という元の完了条件は維持する。
 
 ## 検証の範囲
 
@@ -38,6 +38,16 @@ node scripts/verify-update-ui.cjs /tmp/od-update-validation-xxxx/scenario.json
 
 結果は同じ使い捨てディレクトリの`update-result.json`、画面は`update-completed.png`に保存する。再実行は新しい使い捨て環境で行う。実更新が成功するまでIssue #1の該当チェックを完了にしない。
 
-## 現在の検証結果
+## 実更新の結果（2026-11-12）
 
-準備スクリプトで、独立したlocal環境・ループバックURL・0.0.9で有効なプラグイン・保存確認用の投稿を作成できた。補助PHP/JS/Pythonの構文を確認済み。GitHub添付ZIPからの実更新は未実施であり、成功扱いにしない。
+標準管理画面の更新リンクから、GitHub Release添付ZIPを実際に取得して更新した。
+
+- 更新前0.0.9 → 更新後0.1.0。
+- プラグインは更新後も有効。本番依存のautoloadも存在。
+- 投稿の本文・保存属性は完全一致。
+- 添付ZIPの79ファイルすべてで、導入後のファイルSHA-256が一致。
+- 実際の取得先: `https://github.com/Olein-jp/od-webgl-effects/releases/download/validation-update-20261112/od-webgl-effects.zip`。
+- 実行環境: 使い捨てWordPress 7.1.4 / PHP 8.4.8 / SQLite。
+- [結果JSON](update-result-2026-11-12.json)、[管理画面の記録](update-completed-2026-11-12.png)。
+
+この結果は検証タグを明示した実更新の確認。通常の安定版/latest自動発見や、実機・製品版ブラウザの確認を完了したものではない。Issue #1 / #8 / #10の未確認条件は引き続き残す。

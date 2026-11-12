@@ -1,0 +1,14 @@
+{
+  "version": "0.1.0",
+  "active": true,
+  "contentPreserved": true,
+  "package": "https://github.com/Olein-jp/od-webgl-effects/releases/download/validation-update-20261112/od-webgl-effects.zip",
+  "autoload": true,
+  "packageFilesVerified": 79,
+  "oldVersion": "0.0.9",
+  "expectedPackageSha256": "6bfb706a9c73b766bdc7d64231fd5d735b85405bf879ffb31bbb0e12a74adeea",
+  "releaseTag": "validation-update-20261112",
+  "environment": "local WordPress 7.1.4 / PHP 8.4.8 / SQLite",
+  "metadataMode": "validation-tag selection and version mapping; normal stable/latest discovery not tested",
+  "sourceCommit": "e8489a02bbc8f7b24ae4968ddf0b8aba96fc9a3e"
+}
