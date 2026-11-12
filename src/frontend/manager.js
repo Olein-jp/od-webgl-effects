@@ -1,3 +1,4 @@
+import { AutoQuality, budgets, requestedQuality, allocation } from './quality';
 import { effects } from '../effects';
 import { normalize } from '../effects/settings';
 import { checkLifecycle } from '../effects/registry';
@@ -21,11 +22,14 @@ export class Manager {
 			( items ) => {
 				for ( const item of items ) {
 					const e = this.entries.get( item.target );
-					if ( e ) e.visible = item.isIntersecting;
+					if ( e ) {
+						e.visible = item.isIntersecting;
+						e.ratio = item.intersectionRatio ?? 1;
+					}
 				}
 				this.sync();
 			},
-			{ rootMargin: '100px' }
+			{ rootMargin: '0px', threshold: [ 0, 0.25, 0.5, 0.75, 1 ] }
 		);
 		this.resizeObserver = new this.win.ResizeObserver( ( items ) => {
 			for ( const item of items )
@@ -53,6 +57,7 @@ export class Manager {
 			visible: false,
 			time: 0,
 			last: null,
+			auto: new AutoQuality(),
 		};
 		this.entries.set( root, e );
 		this.intersection.observe( root );
@@ -86,16 +91,10 @@ export class Manager {
 	resize( e ) {
 		if ( ! e?.renderer ) return;
 		const rect = e.root.getBoundingClientRect();
-		let q = e.config.performance.quality;
-		if ( this.win.innerWidth < 768 ) q = e.config.performance.mobileQuality;
-		const caps = { low: 0.75, medium: 1, high: 2, auto: 1.5 };
-		const dpr = Math.min( this.win.devicePixelRatio || 1, caps[ q ] );
-		// Bound backing-store area on very tall blocks.
-		const bound = Math.min(
-			dpr,
-			4096 / Math.max( rect.width, rect.height, 1 ),
-			Math.sqrt( 4000000 / Math.max( rect.width * rect.height, 1 ) )
-		);
+		const q = requestedQuality( e.config, this.win.innerWidth );
+		e.budget = q === 'auto' ? e.auto.budget : budgets[ q ];
+		const bound = allocation( rect, this.win.devicePixelRatio, e.budget );
+		e.renderer.setQuality?.( e.budget );
 		e.renderer.resize(
 			Math.max( 1, rect.width ),
 			Math.max( 1, rect.height ),
@@ -124,6 +123,7 @@ export class Manager {
 		e.canvas = null;
 		e.active = false;
 		e.last = null;
+		e.auto.reset();
 	}
 	initialize( e ) {
 		e.loading = true;
@@ -194,7 +194,9 @@ export class Manager {
 	sync() {
 		let used = 0;
 		for ( const e of [ ...this.entries.values() ].sort(
-			( a, b ) => Number( b.live ) - Number( a.live )
+			( a, b ) =>
+				Number( b.live ) - Number( a.live ) ||
+				( b.ratio || 0 ) - ( a.ratio || 0 )
 		) ) {
 			const eligible =
 				e.visible &&
@@ -216,6 +218,7 @@ export class Manager {
 				! e.lost &&
 				this.fixedTime === undefined;
 			e.last = null;
+			if ( ! e.active ) e.auto.reset();
 			if ( e.active ) e.renderer.resume();
 			else e.renderer.pause();
 		}
@@ -234,14 +237,26 @@ export class Manager {
 		for ( const e of this.entries.values() ) {
 			if ( ! e.active || ! e.renderer ) continue;
 			if (
+				requestedQuality( e.config, this.win.innerWidth ) === 'auto' &&
+				e.auto.observe( now, e.renderCost || 0 )
+			)
+				this.resize( e );
+			if (
 				e.last === null ||
-				now - e.last >= 1000 / e.config.performance.maxFps
+				now - e.last >=
+					1000 /
+						Math.min(
+							e.config.performance.maxFps,
+							e.budget?.fps || 30
+						)
 			) {
 				if ( e.last !== null )
 					e.time += Math.min( 0.1, ( now - e.last ) / 1000 );
 				e.last = now;
 				try {
+					const started = this.win.performance.now();
 					e.renderer.update( e.time );
+					e.renderCost = this.win.performance.now() - started;
 				} catch {
 					this.release( e );
 					e.failed = true;

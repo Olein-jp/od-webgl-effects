@@ -1,0 +1,162 @@
+{
+  "environment": "Chromium/macOS, local WordPress; RAF cadence is not GPU timing or a low-end-device result",
+  "results": [
+    {
+      "count": 1,
+      "mode": "desktop",
+      "frameMedian": 16.699999999999932,
+      "frameP95": 16.799999999999955,
+      "contexts": 1,
+      "canvases": [
+        {
+          "width": 645,
+          "height": 120
+        }
+      ]
+    },
+    {
+      "count": 1,
+      "mode": "mobile",
+      "frameMedian": 16.699999999999932,
+      "frameP95": 16.799999999999983,
+      "contexts": 1,
+      "canvases": [
+        {
+          "width": 247,
+          "height": 86
+        }
+      ]
+    },
+    {
+      "count": 1,
+      "mode": "tall",
+      "frameMedian": 16.699999999999932,
+      "frameP95": 16.799999999999955,
+      "contexts": 1,
+      "canvases": [
+        {
+          "width": 264,
+          "height": 4096
+        }
+      ]
+    },
+    {
+      "count": 3,
+      "mode": "desktop",
+      "frameMedian": 16.699999999999932,
+      "frameP95": 16.700000000000045,
+      "contexts": 3,
+      "canvases": [
+        {
+          "width": 645,
+          "height": 120
+        },
+        {
+          "width": 645,
+          "height": 120
+        },
+        {
+          "width": 645,
+          "height": 120
+        }
+      ]
+    },
+    {
+      "count": 3,
+      "mode": "mobile",
+      "frameMedian": 16.69999999999999,
+      "frameP95": 16.799999999999955,
+      "contexts": 3,
+      "canvases": [
+        {
+          "width": 247,
+          "height": 86
+        },
+        {
+          "width": 247,
+          "height": 86
+        },
+        {
+          "width": 247,
+          "height": 86
+        }
+      ]
+    },
+    {
+      "count": 3,
+      "mode": "tall",
+      "frameMedian": 16.699999999999932,
+      "frameP95": 16.700000000000045,
+      "contexts": 1,
+      "canvases": [
+        {
+          "width": 264,
+          "height": 4096
+        }
+      ]
+    },
+    {
+      "count": 10,
+      "mode": "desktop",
+      "frameMedian": 16.69999999999999,
+      "frameP95": 16.700000000000045,
+      "contexts": 4,
+      "canvases": [
+        {
+          "width": 645,
+          "height": 120
+        },
+        {
+          "width": 645,
+          "height": 120
+        },
+        {
+          "width": 645,
+          "height": 120
+        },
+        {
+          "width": 645,
+          "height": 120
+        }
+      ]
+    },
+    {
+      "count": 10,
+      "mode": "mobile",
+      "frameMedian": 16.699999999999932,
+      "frameP95": 16.799999999999955,
+      "contexts": 4,
+      "canvases": [
+        {
+          "width": 247,
+          "height": 86
+        },
+        {
+          "width": 247,
+          "height": 86
+        },
+        {
+          "width": 247,
+          "height": 86
+        },
+        {
+          "width": 247,
+          "height": 86
+        }
+      ]
+    },
+    {
+      "count": 10,
+      "mode": "tall",
+      "frameMedian": 16.699999999999932,
+      "frameP95": 16.799999999999955,
+      "contexts": 1,
+      "canvases": [
+        {
+          "width": 264,
+          "height": 4096
+        }
+      ]
+    }
+  ]
+}

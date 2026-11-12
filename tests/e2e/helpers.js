@@ -1,6 +1,6 @@
 
 async function editor(page) {
-	page.on('dialog', (dialog) => dialog.accept());
+	if (!page.listenerCount('dialog')) page.on('dialog', (dialog) => dialog.accept());
 	await page.goto('/wp-login.php');
 	await page.locator('#user_login').fill(process.env.WP_USER || 'admin');
 	await page.locator('#user_pass').fill(process.env.WP_PASSWORD || 'password');

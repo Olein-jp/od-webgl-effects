@@ -60,6 +60,13 @@ export class OGLRenderer {
 				'ColorCount',
 			] )
 				this.uniforms[ 'u' + key ] = { value: 0 };
+			this.uniforms.uComplexity = { value: 1 };
+			for ( const [ key, value ] of Object.entries( settings ) ) {
+				if ( typeof value === 'number' )
+					this.uniforms[
+						'u' + key[ 0 ].toUpperCase() + key.slice( 1 )
+					] = { value };
+			}
 			this.uniforms.uResolution = { value: [ 1, 1 ] };
 			this.uniforms.uColors = {
 				value: Array( 5 ).fill( [ 0, 0, 0 ] ).flat(),
@@ -103,6 +110,9 @@ export class OGLRenderer {
 		this.uniforms.uColorCount.value = colors.length;
 		while ( colors.length < 5 ) colors.push( colors.at( -1 ) );
 		this.uniforms.uColors.value = colors.flat();
+	}
+	setQuality( budget ) {
+		this.uniforms.uComplexity.value = budget.complexity;
 	}
 	resize( width, height, dpr ) {
 		this.renderer.dpr = dpr;
