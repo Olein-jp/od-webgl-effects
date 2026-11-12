@@ -109,7 +109,7 @@ function Panel( { attributes, setAttributes, isSelected, clientId } ) {
 		),
 	];
 	const commitSettings = ( value ) => {
-		// Discrete inspector actions must not merge as edits to the same object attribute.
+		// 同じオブジェクト属性への連続操作でも、操作ごとにUndoの区切りを作る。
 		dispatch(
 			'core/block-editor'
 		).__unstableMarkLastChangeAsPersistent?.();

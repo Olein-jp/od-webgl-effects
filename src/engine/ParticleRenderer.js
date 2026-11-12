@@ -152,7 +152,7 @@ export class ParticleRenderer extends OGLRenderer {
 					( time - 0.8 ) * this.settings.speed,
 					this.settings
 				);
-				// Do not draw trails across a wrapping boundary.
+				// 循環境界をまたぐ長い軌跡は描画しない。
 				const current = this.positions.subarray( i * 2, i * 2 + 2 );
 				this.linePositions.set(
 					Math.abs( past[ 0 ] - current[ 0 ] ) > 0.5 ||

@@ -35,7 +35,7 @@ final class RootAdapter implements BlockAdapterInterface {
 			$url = wp_get_attachment_image_url( $id, 'large' );
 			$url = is_string( $url ) ? esc_url_raw( $url, array( 'http', 'https' ) ) : '';
 			if ( $url && in_array( strtolower( (string) wp_parse_url( $url, PHP_URL_SCHEME ) ), array( 'http', 'https' ), true ) ) {
-				// Percent-encode CSS string delimiters before embedding in a custom property.
+				// カスタムプロパティへ埋め込む前にCSS文字列の区切りをエンコードする.
 				$url    = str_replace( array( '"', "'", '(', ')', '\\' ), array( '%22', '%27', '%28', '%29', '%5C' ), $url );
 				$style .= '--od-webgl-image:url("' . $url . '");--od-webgl-fit:' . $fallback['fit'] . ';--od-webgl-position:' . $fallback['position'] . ';';
 				$tags->add_class( 'has-od-webgl-fallback-image' );

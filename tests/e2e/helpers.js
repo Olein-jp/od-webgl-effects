@@ -18,9 +18,9 @@ async function fixture(page, count = 4, effectIds = ['aurora','fluid-gradient','
 		const text = () => wp.blocks.createBlock('core/paragraph', { content: 'Readable content <a href="#example">Test link</a>' });
 		const style = { spacing: { padding: { top: '45px', bottom: '45px', left: '24px', right: '24px' } } };
 		let blocks = [
-			wp.blocks.createBlock('core/group', { align: 'full', style, odWebgl: cfg('aurora') }, [text()]),
-			wp.blocks.createBlock('core/cover', { style, minHeight: 220, odWebgl: cfg('fluid-gradient'), url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E' }, [text()]),
-			wp.blocks.createBlock('core/columns', { style, odWebgl: cfg('waves') }, [wp.blocks.createBlock('core/column', { style, odWebgl: cfg('aurora') }, [text()])]),
+			wp.blocks.createBlock('core/group', { align: 'full', style, odWebgl: cfg(effectIds[0]) }, [text()]),
+			wp.blocks.createBlock('core/cover', { style, minHeight: 220, odWebgl: cfg(effectIds[1%effectIds.length]), url: 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg"/%3E' }, [text()]),
+			wp.blocks.createBlock('core/columns', { style, odWebgl: cfg(effectIds[2%effectIds.length]) }, [wp.blocks.createBlock('core/column', { style, odWebgl: cfg(effectIds[0]) }, [text()])]),
 		];
 		if (count !== 4) blocks = Array.from({ length: count }, (_, i) => wp.blocks.createBlock('core/group', { style, odWebgl: cfg(effectIds[i % effectIds.length]) }, [text()]));
 		wp.data.dispatch('core/block-editor').resetBlocks(blocks);

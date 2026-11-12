@@ -44,6 +44,13 @@ foreach ( $fixtures['configs'] as $case ) {
 	od_webgl_test_check( $actual == $case['expected'], 'WordPress schema fixture: ' . $case['name'] );
 }
 foreach ( Settings::definitions() as $id => $definition ) {
+	foreach ( array_merge( $names, array( 'test/section' ) ) as $supported_name ) {
+		$rendered = Olein\WebGLEffects\BlockRenderer::render( '<div><p>All effects retain content</p></div>', array( 'blockName' => $supported_name, 'attrs' => array( 'odWebgl' => array( 'version' => 1, 'enabled' => true, 'effect' => $id ) ) ) );
+		$tag = new WP_HTML_Tag_Processor( $rendered ); $tag->next_tag();
+		$config = json_decode( $tag->get_attribute( 'data-od-webgl' ), true );
+		od_webgl_test_check( $id === $config['effect'] && false !== strpos( $rendered, 'All effects retain content' ), "$supported_name renders $id without changing content" );
+	}
+
 	$copy = $parsed;
 	$copy[0]['attrs']['odWebgl'] = array( 'version' => 1, 'enabled' => true, 'effect' => $id, 'settings' => array( 'speed' => 1.25, 'colors' => array( 'var(--wp--preset--color--contrast)', '#abc' ) ) );
 	$round_trip = parse_blocks( serialize_blocks( $copy ) );

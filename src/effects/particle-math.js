@@ -3,7 +3,7 @@ export const seed = ( i, channel = 0 ) => {
 	return x - Math.floor( x );
 };
 export const wrap = ( v ) => v - Math.floor( v );
-// At most 8 candidates per particle, independent of the user density.
+// 設定粒子数にかかわらず、1粒子あたり最大8候補だけを調べる。
 export function connections( positions, count, distance, limit ) {
 	const pairs = [];
 	for ( let i = 0; i < count; i++ ) {

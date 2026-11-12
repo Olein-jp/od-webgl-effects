@@ -42,7 +42,7 @@ export function sanitizeSettings( effect, input = {} ) {
 			: [ ...baseColors ];
 	return out;
 }
-// Validation is separate from activation so PHP and JS also agree on disabled data.
+// 有効化と検証を分離し、無効な設定もPHPとJSで同じ結果にする。
 export function sanitizeFallback( input ) {
 	input = input && typeof input === 'object' ? input : {};
 	const out = {
@@ -177,7 +177,7 @@ export function normalize( raw, effects ) {
 	const config = sanitizeConfig( raw, effects );
 	return config?.enabled ? config : null;
 }
-// Switch only effect-specific controls; preserve the palette and common settings.
+// 色と共通設定を保持し、エフェクト固有の設定だけを切り替える。
 export function switchEffect( state, id, effects ) {
 	const effect = effects.get( id );
 	if ( ! effect ) return state;

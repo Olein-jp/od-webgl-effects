@@ -103,3 +103,7 @@ Issue #1 は未完了として扱います。以下のチェックを実行で�
 - 翻訳 JSON マッピング: https://developer.wordpress.org/cli/commands/i18n/make-json/
 - OGL: https://github.com/oframe/ogl
 - SQLite Database Integration: https://wordpress.org/plugins/sqlite-database-integration/
+
+## Phase 2 開発後の確認（2026-11-12）
+
+上記の過去セッション記録にあるGit・Docker・ブラウザ起動の制限と、Issue #2の未実行状態は、その後の確認で更新された。現在の実装・検証・残課題は [Phase 2進捗](phase2-status.md) を参照。Issue #2〜#7・#9の実装をIssueごとにコミットし、#8は低性能実機の確認を残している。#1 / #10を完了扱いにせず、タグ・Releaseは作成していない。

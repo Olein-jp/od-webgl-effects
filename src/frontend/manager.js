@@ -133,7 +133,7 @@ export class Manager {
 		e.loading = true;
 		const generation = e.generation || 0;
 		const effect = effects.get( e.config.effect );
-		// The token is checked before creating a GPU context, not just after loading.
+		// GPUを確保する前にもトークンを確認し、古い読み込みの描画開始を防ぐ。
 		Promise.resolve()
 			.then( () =>
 				effect.loadRenderer ? effect.loadRenderer() : null
